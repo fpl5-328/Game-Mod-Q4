@@ -442,15 +442,47 @@ stateResult_t rvWeaponRocketLauncher::State_Idle( const stateParms_t& parms ) {
 rvWeaponRocketLauncher::State_Fire
 ================
 */
+
 stateResult_t rvWeaponRocketLauncher::State_Fire ( const stateParms_t& parms ) {
+	idDict		dict;
+	float		yaw;
+	idVec3 org;
+	idEntity* newEnt = NULL;
+	const char* value;
+	int randomNum = rand() % 2;
 	enum {
 		STAGE_INIT,
 		STAGE_WAIT,
 	};	
 	switch ( parms.stage ) {
 		case STAGE_INIT:
+			if (randomNum == 1) {//makes the rocket either spawn a gunner or a grunt
+				value = ("monster_gunner");
+			}
+			else {
+				value = ("monster_grunt");
+			}
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
+
 			Attack(false, 50, 5, 0, 1.0f); //Change in the amount of rockets fired, and their spreads
+			//putting spawn command onto rocket fire
+			yaw = owner->viewAngles.yaw;
+
+			dict.Set("classname", value);
+			dict.Set("angle", va("%f", yaw + 180));
+
+			org = owner->GetPhysics()->GetOrigin() + idAngles(0, yaw, 0).ToForward() * 80 + idVec3(0, 0, 1);
+			dict.Set("origin", org.ToString());
+
+			
+			gameLocal.SpawnEntityDef(dict, &newEnt);
+
+			if (newEnt) {
+				gameLocal.Printf("spawned entity '%s'\n", newEnt->name.c_str());
+			}
+			//end here
+
+			owner->GivePowerUp(POWERUP_REGENERATION, SEC2MS(30.0f));//gives the player regeneration
 			PlayAnim(ANIMCHANNEL_LEGS, "fire", parms.blendFrames);
 			
 			return SRESULT_STAGE ( STAGE_WAIT );

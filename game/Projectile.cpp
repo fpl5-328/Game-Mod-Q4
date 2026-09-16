@@ -377,6 +377,8 @@ void idProjectile::Launch( const idVec3 &start, const idVec3 &dir, const idVec3 
 	gravity				= spawnArgs.GetFloat( "gravity" );
 	fuse				= spawnArgs.GetFloat( "fuse" ) + ( spawnArgs.GetFloat( "fuse_random", "0" ) * gameLocal.random.RandomFloat() );
 	bounceCount			= spawnArgs.GetInt( "bounce_count", "-1" );
+
+	
 	
 	//spawn impact entity information
 	impactEntity				= spawnArgs.GetString("def_impactEntity","");
