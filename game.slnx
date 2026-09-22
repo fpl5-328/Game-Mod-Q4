@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="DebugInline" />
+    <BuildType Name="Release" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="game.vcxproj" Id="49bec5c6-b964-417a-851e-808886b57430" />
+</Solution>
