@@ -31,6 +31,16 @@
 #include "NoGameTypeInfo.h"
 #endif
 
+
+// -------------------
+//Code for helpscreen
+// ------------------
+void Cmd_HelpScreen_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowHelpScreen"); //Code for Helpscreen <---------------------------------------------------------------------------|
+}
+//-----------------------------------------
+
+
 /*
 ==================
 Cmd_GetFloatArg
@@ -3038,6 +3048,7 @@ void Cmd_ClientOverflowReliable_f( const idCmdArgs& args ) {
 }
 #endif
 
+
 /*
 =================
 idGameLocal::InitConsoleCommands
@@ -3053,6 +3064,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 //	cmdSystem->AddCommand( "writeGameState",		WriteGameState_f,			CMD_FL_GAME,				"write game state" );
 //	cmdSystem->AddCommand( "testSaveGame",			TestSaveGame_f,				CMD_FL_GAME|CMD_FL_CHEAT,	"test a save game for a level" );
 // RAVEN END
+	cmdSystem->AddCommand("ShowHelpScreen", Cmd_HelpScreen_f, CMD_FL_GAME, "Uses this command to show the help, and is called when h is pressed, hopefully");
 	cmdSystem->AddCommand( "game_memory",			idClass::DisplayInfo_f,		CMD_FL_GAME,				"displays game class info" );
 	cmdSystem->AddCommand( "listClasses",			idClass::ListClasses_f,		CMD_FL_GAME,				"lists game classes" );
 	cmdSystem->AddCommand( "listThreads",			idThread::ListThreads_f,	CMD_FL_GAME|CMD_FL_CHEAT,	"lists script threads" );
@@ -3232,7 +3244,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "buyMenu",				Cmd_ToggleBuyMenu_f,		CMD_FL_GAME,				"Toggle buy menu (if in a buy zone and the game type supports it)" );
 	cmdSystem->AddCommand( "buy",					Cmd_BuyItem_f,				CMD_FL_GAME,				"Buy an item (if in a buy zone and the game type supports it)" );
 // RITUAL END
-
+	
 }
 
 /*
