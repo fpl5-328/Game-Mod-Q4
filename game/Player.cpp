@@ -8795,6 +8795,9 @@ void idPlayer::AdjustSpeed( void ) {
 
 	speed *= PowerUpModifier(PMOD_SPEED);
 
+	//RPG Speed Stat********************************************************************************8
+	speed *= this->speed;
+
 	if ( influenceActive == INFLUENCE_LEVEL3 ) {
 		speed *= 0.33f;
 	}
