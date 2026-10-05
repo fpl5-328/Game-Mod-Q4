@@ -1079,6 +1079,15 @@ idPlayer::idPlayer
 idPlayer::idPlayer() {
 	memset( &usercmd, 0, sizeof( usercmd ) );
 
+	level = 1; //Rpg Stats are here, except for MaxHealth because that is already a part of "idInventory"
+	experience = 0;
+
+	strength = 1.0f;
+	defense = 1.0f;
+	speed = 1.0f;
+	magic = 1.0f;
+	maxMana = 1.0f;
+
 	alreadyDidTeamAnnouncerSound = false;
 
 	doInitWeapon			= false;

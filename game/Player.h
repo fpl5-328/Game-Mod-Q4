@@ -14,6 +14,7 @@
 ===============================================================================
 */
 
+
 extern const idEventDef EV_Player_GetButtons;
 extern const idEventDef EV_Player_GetMove;
 extern const idEventDef EV_Player_GetViewAngles;
@@ -331,6 +332,15 @@ public:
 		
 	// inventory
 	idInventory				inventory;
+
+	int level; //Rpg Stats are here, except for MaxHealth because that is already a part of "idInventory"
+	int experience;
+
+	float strength;
+	float defense;
+	float speed;
+	float magic;
+	float maxMana;
 
 	rvWeapon*						weapon;
 	idEntityPtr<rvViewWeapon>		weaponViewModel;
