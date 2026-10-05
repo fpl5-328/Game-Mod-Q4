@@ -342,6 +342,9 @@ public:
 	float magic;
 	float maxMana;
 
+	void LevelUp();
+	void AddExperience(int amount);
+
 	rvWeapon*						weapon;
 	idEntityPtr<rvViewWeapon>		weaponViewModel;
 	idEntityPtr<idAnimatedEntity>	weaponWorldModel;

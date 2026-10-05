@@ -1352,6 +1352,38 @@ idPlayer::idPlayer() {
 	teamDoubler			= NULL;		
 	teamDoublerPending		= false;
 }
+/*
+==============
+idPlayer::LevelUp
+==============
+*/
+void idPlayer::LevelUp() {
+	gameLocal.Printf("You have leveled up!");
+	StartSound("snd_powerup_regen", SND_CHANNEL_POWERUP, 0, false, NULL);
+	level++;
+	inventory.maxHealth = inventory.maxHealth + gameLocal.random.RandomInt(3) + 1;
+	strength = strength + gameLocal.random.RandomInt(3) + 1;
+	defense = defense + gameLocal.random.RandomInt(3) + 1;
+	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.01f;
+	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.01f;
+	magic = magic + gameLocal.random.RandomInt(3) + 1;
+	maxMana = defense + gameLocal.random.RandomInt(3) + 1;
+
+}
+/*
+==============
+idPlayer::AddExperience
+==============
+*/
+void idPlayer::AddExperience(int amount) {
+	experience += amount;
+
+	int expNeeded = level * 100;
+	if (experience > expNeeded) {
+		experience = experience - expNeeded;
+		LevelUp();
+	}
+}
 
 /*
 ==============
@@ -10005,6 +10037,13 @@ void idPlayer::CalcDamagePoints( idEntity *inflictor, idEntity *attacker, const 
 
 	pDmgScale = damageDef->GetFloat( "playerScale", "1" );
 	damage = ceil(pDmgScale*(float)damage);
+
+	//Check for defense stat*********************************************************************************************Modded Addition
+	damage -= defense;
+
+	if (damage < 1) {
+		damage = 1;
+	}
 
 	// check for completely getting out of the damage
 	if ( !damageDef->GetBool( "noGod" ) ) {

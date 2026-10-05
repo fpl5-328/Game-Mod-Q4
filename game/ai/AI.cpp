@@ -1627,6 +1627,12 @@ void idAI::Killed( idEntity *inflictor, idEntity *attacker, int damage, const id
 
 	aifl.dead = true;
 
+	//give XP to player who killed this AI
+	if (attacker && attacker->IsType(idPlayer::GetClassType())) {
+		idPlayer* player = static_cast<idPlayer*>(attacker);
+		player->AddExperience(25);
+	}
+
 	// turn off my flashlight, if I had one
 	ProcessEvent( &AI_Flashlight, false );
 

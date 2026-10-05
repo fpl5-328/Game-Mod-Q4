@@ -3012,7 +3012,14 @@ void Cmd_TestClientModel_f( const idCmdArgs& args ) {
 //	face->SetAxis( mat3_identity );
 //	face->SetModel( "model_player_marine" );
 }
-
+/*================ =
+Cmd_LevelUp_f
+================ =
+*/
+void Cmd_LevelUp_f(const idCmdArgs & args) {
+	gameLocal.GetLocalPlayer()->LevelUp();
+	gameLocal.Printf("You have leveled up!");
+	}
 
 // RAVEN END
 
@@ -3233,6 +3240,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "buyMenu",				Cmd_ToggleBuyMenu_f,		CMD_FL_GAME,				"Toggle buy menu (if in a buy zone and the game type supports it)" );
 	cmdSystem->AddCommand( "buy",					Cmd_BuyItem_f,				CMD_FL_GAME,				"Buy an item (if in a buy zone and the game type supports it)" );
 // RITUAL END
+	cmdSystem->AddCommand("levelUp", Cmd_LevelUp_f, CMD_FL_GAME, "levels you up");
 }
 
 /*
