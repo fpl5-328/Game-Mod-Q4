@@ -30,7 +30,19 @@
 #else
 #include "NoGameTypeInfo.h"
 #endif
+// -------------------
+//Code for helpscreen
+// ------------------
+void Cmd_HelpScreen_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowHelpScreen"); //Code for Helpscreen <---------------------------------------------------------------------------|
+}
 
+// -------------------
+//Code for Level Up Notification
+// ------------------
+void Cmd_ShowLevelUp_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowLevelUp"); //Code for Visuals
+}
 /*
 ==================
 Cmd_GetFloatArg
@@ -3241,6 +3253,8 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand( "buy",					Cmd_BuyItem_f,				CMD_FL_GAME,				"Buy an item (if in a buy zone and the game type supports it)" );
 // RITUAL END
 	cmdSystem->AddCommand("levelUp", Cmd_LevelUp_f, CMD_FL_GAME, "levels you up");
+	cmdSystem->AddCommand("ShowHelpScreen", Cmd_HelpScreen_f, CMD_FL_GAME, "Uses this command to show the help, and is called when h is pressed, hopefully");
+	cmdSystem->AddCommand("ShowLevelUp", Cmd_ShowLevelUp_f, CMD_FL_GAME, "Uses this command to show the help, and is called when h is pressed, hopefully");
 }
 
 /*

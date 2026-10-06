@@ -1359,6 +1359,7 @@ idPlayer::LevelUp
 */
 void idPlayer::LevelUp() {
 	gameLocal.Printf("You have leveled up!");
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowLevelUp"); //Code for Visuals
 	StartSound("snd_powerup_regen", SND_CHANNEL_POWERUP, 0, false, NULL);
 	level++;
 	inventory.maxHealth = inventory.maxHealth + gameLocal.random.RandomInt(3) + 1;
