@@ -1082,7 +1082,7 @@ idPlayer::idPlayer() {
 	level = 1; //Rpg Stats are here, except for MaxHealth because that is already a part of "idInventory"
 	experience = 0;
 
-	strength = 1.0f;
+	strength = 0.5f;
 	defense = 1.0f;
 	speed = 1.0f;
 	magic = 1.0f;
@@ -1363,7 +1363,7 @@ void idPlayer::LevelUp() {
 	StartSound("snd_powerup_regen", SND_CHANNEL_POWERUP, 0, false, NULL);
 	level++;
 	inventory.maxHealth = inventory.maxHealth + gameLocal.random.RandomInt(3) + 1;
-	strength = strength + gameLocal.random.RandomInt(3) + 1;
+	strength = strength + (gameLocal.random.RandomInt(3) + 1)*0.09;
 	defense = defense + gameLocal.random.RandomInt(3) + 1;
 	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.01f;
 	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.01f;
