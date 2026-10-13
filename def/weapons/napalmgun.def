@@ -304,11 +304,11 @@ entityDef projectile_napalm
 
 
 	//spawn impact entity information
-	"def_impactEntity"			"impact_napalm_projectile"
-	"numImpactEntities"			"1"
-	"ieMinPitch"				"20"
-	"ieMaxPitch"				"50"
-	"ieSlicePercentage"			"1.00"
+	//"def_impactEntity"			"impact_napalm_projectile"
+	//"numImpactEntities"			"1"
+	//"ieMinPitch"				"20"
+	//"ieMaxPitch"				"50"
+	//"ieSlicePercentage"			"1.00"
 	
 	"net_syncPhysics"			"1"
 

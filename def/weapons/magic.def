@@ -1,0 +1,181 @@
+//--------------------------------------------------------------------------------------------------------------------
+// Projectile for Fire
+//--------------------------------------------------------------------------------------------------------------------
+
+entityDef projectile_firaga
+{
+	"spawnclass"				"idProjectile"
+	"size"						"7 7 7"
+	"cone"						"2"
+	"noshadows"					"1"
+	"clipmask_largeshot"		"1"
+	"no_contents"				"0"
+
+	"model"						"models/weapons/napalmgun/flame_gun_glob.ase"
+	"def_damage"				"damage_firagaDirect"
+	"def_splash_damage"			"damage_firagaSplash"	
+
+	"speed"						"1400"
+	"angular_velocity"			"-10 5 1"
+	"settle_duration"			"0.08"
+	
+	"linear_friction"			"0"
+	"angular_friction"			"0"
+	"contact_friction"			"10"
+	//"bounce"					".65"
+	"gravity"					"0"
+	"fuse"						"2.5"
+								
+	"detonate_on_fuse"			"1"
+	"detonate_on_death"			"0"
+	"detonate_on_world"			"1"
+	"detonate_on_actor"			"1"
+								
+	"impact_gib"				"1"
+	"decal_size"				"75"
+
+	"flyEffectAttenuateSpeed"	"200"
+	
+	"airBurst_desc"				"midair_"
+
+	"fx_fly"					"effects/weapons/napalmgun/flyburn.fx"
+	"fx_fly_mp_low"				"effects/weapons/napalmgun/flyburn_mp_low.fx"
+	"fx_impact_water"			"effects/ambient/splash_med.fx"
+
+	"snd_ricochet"				"weapon_napalmgun_bounce"
+	
+	// These are the impact effects and the detonation effects.
+	//"fx_detonate"				"effects/weapons/napalmgun/detonate.fx"
+	//"fx_impact"				"effects/weapons/napalmgun/areaburn"
+	//"fx_impact_actor"			"effects/weapons/napalmgun/actorimpact"
+	
+	"fx_impact_actor"			"effects/weapons/rocketlauncher/detonate.fx"
+	"fx_impact"					"effects/weapons/napalmgun/impact.fx"
+	"fx_detonate"					"effects/weapons/napalmgun/detonate.fx"
+
+	//"delay_residual"				"1.5"
+	//"residual_time"					"6"
+	//"def_residual_damage"			"damage_lightTank_residualPlasma"	
+
+
+	//spawn impact entity information
+	//"def_impactEntity"			"impact_napalm_projectile"
+	//"numImpactEntities"			"1"
+	//"ieMinPitch"				"20"
+	//"ieMaxPitch"				"50"
+	//"ieSlicePercentage"			"1.00"
+	
+	"net_syncPhysics"			"1"
+
+	"fx_teleport_enter"			"effects/mp/item_teleport.fx"
+	"fx_teleport"				"effects/mp/item_teleport.fx"
+
+	"no_impact_prediction"		"1"
+}
+
+//--------------------------------------------------------------------------------------------------------------------
+// Damage
+//--------------------------------------------------------------------------------------------------------------------
+
+entityDef damage_firagaDirect 
+{
+	"damage"					"80"
+	"gib"						"1"
+	"knockback"					"60"
+	"deathPush"					"200"
+	"deathPushMin"				"3000 2000"
+	"deathPushMax"				"5000 3000"
+}
+
+entityDef damage_firagaSplash
+{
+	"damage"					"40"
+	"radius"					"140"
+	"attackerDamageScale"		"1.0"
+	"knockback"					"60"
+	"gib"						"0"
+	"deathPush"					"100"
+	"deathPushMin"				"3000 2000"
+	"deathPushMax"				"5000 3000"
+}
+
+
+
+//--------------------------------------------------------------------------------------------------------------------
+// Projectile for Blizzard
+//--------------------------------------------------------------------------------------------------------------------
+
+entityDef projectile_blizzaga
+{
+	"spawnclass"				"idProjectile"
+	"size"						"7 7 7"
+	"cone"						"2"
+	"noshadows"					"1"
+	"clipmask_largeshot"		"1"
+	"no_contents"				"0"
+
+	"model"						"models/weapons/napalmgun/flame_gun_glob.ase"
+	"def_damage"				"damage_BlizzardDirect"
+	
+
+	"speed"						"700"
+	"angular_velocity"			"-10 5 1"
+	"settle_duration"			"0.08"
+	
+	"linear_friction"			"0"
+	"angular_friction"			"0"
+	"contact_friction"			"10"
+	//"bounce"					".65"
+	"gravity"					"0"
+	"fuse"						"2.5"
+								
+	"detonate_on_fuse"			"1"
+	"detonate_on_death"			"0"
+	"detonate_on_world"			"1"
+	"detonate_on_actor"			"1"
+								
+	"impact_gib"				"1"
+	"decal_size"				"75"
+
+	"flyEffectAttenuateSpeed"	"200"
+	
+	"airBurst_desc"				"midair_"
+
+	"snd_ricochet"				"weapon_napalmgun_bounce"
+	
+	"fx_fly"			"effects/weapons/hyperblaster/fly.fx"
+	
+	"fx_impact_actor"			"effects/weapons/railgun/impact_default.fx"
+	"fx_impact"					"effects/weapons/railgun/impact_default.fx"
+	"fx_detonate"					"effects/weapons/railgun/impact_default.fx"
+	
+	"fx_fly"			"effects/weapons/hyperblaster/fly.fx"
+	
+	"fx_impact_actor"			"effects/weapons/railgun/impact_default.fx"
+	"fx_impact"					"effects/weapons/railgun/impact_default.fx"
+	"fx_detonate"					"effects/weapons/railgun/impact_default.fx"
+	
+	"net_syncPhysics"			"1"
+
+	"fx_teleport_enter"			"effects/mp/item_teleport.fx"
+	"fx_teleport"				"effects/mp/item_teleport.fx"
+
+	"no_impact_prediction"		"1"
+}
+
+//--------------------------------------------------------------------------------------------------------------------
+// Damage
+//--------------------------------------------------------------------------------------------------------------------
+
+entityDef damage_BlizzardDirect 
+{
+	"damage"					"40"
+	"gib"						"1"
+	"knockback"					"60"
+	"deathPush"					"200"
+	"deathPushMin"				"3000 2000"
+	"deathPushMax"				"5000 3000"
+
+	"blizzard_freeze"            "1"
+}
+
