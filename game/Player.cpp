@@ -18,6 +18,8 @@
 #include "Healing_Station.h"
 #include "ai/AI_Medic.h"
 
+
+
 // RAVEN BEGIN
 // nrausch: support for turning the weapon change ui on and off
 #ifdef _XENON
@@ -1086,7 +1088,8 @@ idPlayer::idPlayer() {
 	defense = 1.0f;
 	speed = 1.0f;
 	magic = 1.0f;
-	maxMana = 1.0f;
+	maxMana = 100.0f;
+	mana = maxMana;
 
 	alreadyDidTeamAnnouncerSound = false;
 
@@ -1385,7 +1388,42 @@ void idPlayer::AddExperience(int amount) {
 		LevelUp();
 	}
 }
+/*
+==============
+idPlayer::CastFire
+==============
+*/
+void idPlayer::CastFire() {
+	int ManaCost = 10;
+	if (mana <= ManaCost) {
+		return;
+		}
 
+	weapon->CastFireSpell();
+	mana -= ManaCost;
+
+
+
+	
+}
+/*
+==============
+idPlayer::CastBlizzard
+==============
+*/
+void idPlayer::CastBlizzard() {
+	int ManaCost = 10;
+	if (mana <= ManaCost) {
+		return;
+	}
+
+	weapon->CastBlizzardSpell();
+	mana -= ManaCost;
+
+
+
+
+}
 /*
 ==============
 idPlayer::SetShowHud

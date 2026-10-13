@@ -2603,7 +2603,46 @@ void rvWeapon::Attack( bool altAttack, int num_attacks, float spread, float fuse
 		
 	}
 }
+/*
+================
+rvWeapon::CastFireSpell
+================
+*/
+void rvWeapon::CastFireSpell() {
+	const idDeclEntityDef* projectileDef;
+	
 
+	projectileDef = gameLocal.FindEntityDef("projectile_firaga", false);
+	if (!projectileDef) {
+		return;
+	}
+	idDict projectileDict = projectileDef->dict;
+
+	idVec3 muzzleOrigin = playerViewOrigin;
+	idMat3 muzzleAxis = playerViewAxis;
+
+	LaunchProjectiles(projectileDict,muzzleOrigin, muzzleAxis, 1, 1, 0, 0.15f * owner->magic);
+}
+/*
+================
+rvWeapon::CastBlizzardSpell
+================
+*/
+void rvWeapon::CastBlizzardSpell() {
+	const idDeclEntityDef* projectileDef;
+
+
+	projectileDef = gameLocal.FindEntityDef("projectile_blizzaga", false);
+	if (!projectileDef) {
+		return;
+	}
+	idDict projectileDict = projectileDef->dict;
+
+	idVec3 muzzleOrigin = playerViewOrigin;
+	idMat3 muzzleAxis = playerViewAxis;
+
+	LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 1, 1, 0, 0.1f * owner->magic);
+}
 /*
 ================
 rvWeapon::LaunchProjectiles

@@ -214,6 +214,8 @@ public:
 	void				Hitscan						( const idDict& dict, const idVec3& muzzleOrigin, const idMat3& muzzleAxis, int num_hitscans, float spread, float power );
 	void				AlertMonsters				( void );
 
+	void				CastFireSpell				( void );//cast fire spell <------------------
+	void				CastBlizzardSpell(void);//cast fire spell <------------------
 	// Mods
 	int					GetMods						( void ) const;
 

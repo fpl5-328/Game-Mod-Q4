@@ -2395,7 +2395,16 @@ void idActor::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir
 	if ( !damageDef ) {
 		gameLocal.Error( "Unknown damageDef '%s'", damageDefName );
 	}
-
+	//freeze code
+	if (damageDef->GetBool("blizzard_freeze") && (IsType(idAI::GetClassType()))) {
+		int freezeDuration = 1500;
+		if (attacker->IsType(idPlayer::GetClassType())) {
+			idPlayer* player = static_cast<idPlayer*>(attacker);
+			freezeDuration = freezeDuration * player->magic;
+		}
+		static_cast<idAI*>(this)->ApplyBlizzardFreeze(freezeDuration);//--------------------freeze time code
+	}
+	//freeze code
 	int	damage = damageDef->GetInt( "damage" ) * damageScale;
 	damage = GetDamageForLocation( damage, location );
 

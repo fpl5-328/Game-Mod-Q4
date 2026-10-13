@@ -491,6 +491,10 @@ public:
 	idMoveState				move;
 	idMoveState				savedMove;
 
+	//Blizzard Code<-----------------------------------------------
+	int blizzardFrozenTime;
+	void ApplyBlizzardFreeze(int duration);
+
 	// physics
 	idPhysics_Monster		physicsObj;
 	

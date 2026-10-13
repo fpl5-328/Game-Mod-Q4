@@ -43,6 +43,21 @@ void Cmd_HelpScreen_f(const idCmdArgs& args) {
 void Cmd_ShowLevelUp_f(const idCmdArgs& args) {
 	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowLevelUp"); //Code for Visuals
 }
+
+
+// -------------------
+//Code for Testing fire
+// ------------------
+void Cmd_CastFire_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->CastFire();
+}
+// -------------------
+//Code for Testing blizzard
+// ------------------
+void Cmd_CastBlizzard_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->CastBlizzard();
+}
+
 /*
 ==================
 Cmd_GetFloatArg
@@ -3255,6 +3270,8 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("levelUp", Cmd_LevelUp_f, CMD_FL_GAME, "levels you up");
 	cmdSystem->AddCommand("ShowHelpScreen", Cmd_HelpScreen_f, CMD_FL_GAME, "Uses this command to show the help, and is called when h is pressed, hopefully");
 	cmdSystem->AddCommand("ShowLevelUp", Cmd_ShowLevelUp_f, CMD_FL_GAME, "Uses this command to show the help, and is called when h is pressed, hopefully");
+	cmdSystem->AddCommand("CastFire", Cmd_CastFire_f, CMD_FL_GAME, "Use this to test fire command");
+	cmdSystem->AddCommand("CastBlizzard", Cmd_CastBlizzard_f, CMD_FL_GAME, "Use this to test blizzard command");
 }
 
 /*

@@ -139,6 +139,13 @@ idAI::idAI ( void ) {
 	actionAnimNum	= 0;
 	actionSkipTime	= 0;
 	actionTime		= 0;
+
+	blizzardFrozenTime = 0;
+
+}
+//Blizzard function
+void idAI::ApplyBlizzardFreeze(int duration) {
+	blizzardFrozenTime = gameLocal.time + duration;
 }
 
 /*
@@ -1198,11 +1205,14 @@ void idAI::Think( void ) {
 				UpdateEnemy ( );
 			}
 
-			// update state machine
-			UpdateStates();
+			
 
 			// run all movement commands
-			Move();
+			if (gameLocal.time >= blizzardFrozenTime) {
+				// update state machine
+				UpdateStates();
+				Move();
+			}
 
 			// if not dead, chatter and blink
 			if( move.moveType != MOVETYPE_DEAD ){

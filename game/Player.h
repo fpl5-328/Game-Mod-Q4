@@ -341,9 +341,13 @@ public:
 	float speed;
 	float magic;
 	float maxMana;
+	float mana; 
 
 	void LevelUp();
 	void AddExperience(int amount);
+
+	void CastFire();
+	void CastBlizzard();
 
 	rvWeapon*						weapon;
 	idEntityPtr<rvViewWeapon>		weaponViewModel;
