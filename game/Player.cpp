@@ -1369,9 +1369,10 @@ void idPlayer::LevelUp() {
 	strength = strength + (gameLocal.random.RandomInt(3) + 1)*0.09;
 	defense = defense + gameLocal.random.RandomInt(3) + 1;
 	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.01f;
-	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.01f;
 	magic = magic + gameLocal.random.RandomInt(3) + 1;
-	maxMana = defense + gameLocal.random.RandomInt(3) + 1;
+	maxMana = maxMana + gameLocal.random.RandomInt(30) + 10;
+	mana = maxMana;
+	ManaUpdate();
 
 }
 /*
@@ -1390,17 +1391,31 @@ void idPlayer::AddExperience(int amount) {
 }
 /*
 ==============
+idPlayer::AddMana
+==============
+*/
+void idPlayer::AddMana(int amount) {
+	mana += amount;
+	if (mana > maxMana){
+		mana = maxMana;
+	}
+	ManaUpdate();
+	
+}
+/*
+==============
 idPlayer::CastFire
 ==============
 */
 void idPlayer::CastFire() {
 	int ManaCost = 10;
-	if (mana <= ManaCost) {
+	if (mana < ManaCost) {
 		return;
 		}
 
 	weapon->CastFireSpell();
 	mana -= ManaCost;
+	ManaUpdate();
 
 
 
@@ -1413,12 +1428,15 @@ idPlayer::CastBlizzard
 */
 void idPlayer::CastBlizzard() {
 	int ManaCost = 10;
-	if (mana <= ManaCost) {
+	if (mana < ManaCost) {
 		return;
 	}
 
 	weapon->CastBlizzardSpell();
 	mana -= ManaCost;
+	ManaUpdate();
+
+	
 }
 /*
 ==============
@@ -1427,14 +1445,95 @@ idPlayer::CastThunder
 */
 void idPlayer::CastThunder() {
 	int ManaCost = 10;
-	if (mana <= ManaCost) {
+	if (mana < ManaCost) {
 		return;
 	}
 
 
 	weapon->CastThunderSpell();
 	mana -= ManaCost;
+	ManaUpdate();
 }
+/*
+==============
+idPlayer::CastCure
+==============
+*/
+void idPlayer::CastCure() {
+	int ManaCost = 10;
+	if (mana < ManaCost) {
+		return;
+	}
+
+
+	health += 20 + (magic * 5.0f);
+	if (health > inventory.maxHealth) {
+		health = inventory.maxHealth;
+	}
+	StartSound("snd_powerup_regen", SND_CHANNEL_POWERUP, 0, false, NULL);
+	gameLocal.PlayEffect(spawnArgs, "fx_regeneration", GetPhysics()->GetOrigin(), idVec3(0, 0, 1).ToMat3(), false, vec3_origin, true);
+	mana -= ManaCost;
+	ManaUpdate();
+}
+/*
+==============
+idPlayer::CastAero
+==============
+*/
+void idPlayer::CastAero() {
+	int ManaCost = 10;
+	if (mana < ManaCost) {
+		return;
+	}
+	aeroActiveTime = (1500 + (magic * 0.5f));
+
+	
+	mana -= ManaCost;
+	ManaUpdate();
+}
+
+/*
+==============
+idPlayer::ManaUpdate
+==============
+*/
+void idPlayer::ManaUpdate() {
+
+	if (mana >= maxMana) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ManaFull"); //Code for Visuals
+	}
+	else if (mana >= 90.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana90"); //Code for Visuals
+	}
+	else if (mana >= 80.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana80"); //Code for Visuals
+	}
+	else if (mana >= 70.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana70"); //Code for Visuals
+	}
+	else if (mana >= 60.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana60"); //Code for Visuals
+	}
+	else if (mana >= 50.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana50"); //Code for Visuals
+	}
+	else if (mana >= 40.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana40"); //Code for Visuals
+	}
+	else if (mana >= 30.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana30"); //Code for Visuals
+	}
+	else if (mana >= 20.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana20"); //Code for Visuals
+	}
+	else if (mana >= 10.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana10"); //Code for Visuals
+	}
+	else{
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana0"); //Code for Visuals
+	}
+}
+
 /*
 ==============
 idPlayer::SetShowHud
@@ -10096,6 +10195,10 @@ void idPlayer::CalcDamagePoints( idEntity *inflictor, idEntity *attacker, const 
 
 	if (damage < 1) {
 		damage = 1;
+	}
+	//Check for aero active stat*********************************************************************************************Modded Addition
+	if (gameLocal.time < aeroActiveTime) {
+		damage = (int)(damage * 0.5f);
 	}
 
 	// check for completely getting out of the damage

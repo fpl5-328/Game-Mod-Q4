@@ -2663,9 +2663,9 @@ void rvWeapon::CastThunderSpell() {
 
 	idVec3 rightOrigin = muzzleOrigin + playerViewAxis[1] * 40.0f;
 	idVec3 leftOrigin = muzzleOrigin - playerViewAxis[1] * 40.0f;
-	LaunchProjectiles(projectileDict, rightOrigin, muzzleAxis, 1, 1, 0, 0.1f * owner->magic);
-	LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 1, 1, 0, 0.1f * owner->magic);
-	LaunchProjectiles(projectileDict, leftOrigin, muzzleAxis, 1, 1, 0, 0.1f * owner->magic);
+	LaunchProjectiles(projectileDict, rightOrigin, muzzleAxis, 3, 8, 0, 0.1f * owner->magic);
+	LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 3, 8, 0, 0.1f * owner->magic);
+	LaunchProjectiles(projectileDict, leftOrigin, muzzleAxis, 3, 8, 0, 0.1f * owner->magic);
 }
 /*
 ================

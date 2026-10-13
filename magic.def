@@ -223,15 +223,9 @@ entityDef projectile_thunder
 	"fx_path"					"effects/weapons/lightninggun/trail.fx"
 	"fx_crawl"					"effects/weapons/lightninggun/crawl.fx"	
 	"fx_spire"					"effects/weapons/lightninggun/spire.fx"
-
-	"fx_fly"					"effects/weapons/lightninggun/trail.fx"	
-	"fx_fly"			"effects/weapons/lightninggun/trail_world.fx"	
-	"fx_fly"					"effects/weapons/lightninggun/impact.fx"
-	"fx_fly"			"effects/ambient/splash_med.fx"
-	"fx_fly"					"effects/weapons/lightninggun/trail.fx"
-	"fx_fly"					"effects/weapons/lightninggun/crawl.fx"	
-	"fx_fly"					"effects/weapons/lightninggun/spire.fx"
 	
+	"fx_fly"				"effects/weapons/rocketlauncher/fly.fx"
+
 	"net_syncPhysics"			"1"
 
 	"fx_teleport_enter"			"effects/mp/item_teleport.fx"

@@ -202,8 +202,8 @@ entityDef projectile_thunder
 	"linear_friction"			"0"
 	"angular_friction"			"0"
 	"contact_friction"			"10"
-	//"bounce"					".65"
-	"gravity"					"0"
+	"bounce"					".65"
+	"gravity"					"1"
 	"fuse"						"2.5"
 								
 	"detonate_on_fuse"			"1"
@@ -225,7 +225,13 @@ entityDef projectile_thunder
 	"fx_path"					"effects/weapons/lightninggun/trail.fx"
 	"fx_crawl"					"effects/weapons/lightninggun/crawl.fx"	
 	"fx_spire"					"effects/weapons/lightninggun/spire.fx"
+
+	"fx_fly"			"effects/weapons/hyperblaster/fly.fx"
 	
+
+	"fx_fly"				"effects/weapons/lightninggun/trail.fx"	
+	
+
 	"net_syncPhysics"			"1"
 
 	"fx_teleport_enter"			"effects/mp/item_teleport.fx"
@@ -240,13 +246,13 @@ entityDef projectile_thunder
 
 entityDef damage_ThunderDirect 
 {
-	"damage"					"40"
+	"damage"					"15"
 	"gib"						"1"
-	"knockback"					"60"
 	"deathPush"					"200"
 	"deathPushMin"				"3000 2000"
 	"deathPushMax"				"5000 3000"
 
 	"filter_electricity"		"1"
 }
+
 

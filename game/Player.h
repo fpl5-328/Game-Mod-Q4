@@ -349,7 +349,11 @@ public:
 	void CastFire();
 	void CastBlizzard();
 	void CastThunder();
-
+	void CastCure();
+	void CastAero();
+	void ManaUpdate();
+	void AddMana(int amount);
+	int aeroActiveTime;
 	rvWeapon*						weapon;
 	idEntityPtr<rvViewWeapon>		weaponViewModel;
 	idEntityPtr<idAnimatedEntity>	weaponWorldModel;

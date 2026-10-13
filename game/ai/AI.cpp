@@ -1642,6 +1642,10 @@ void idAI::Killed( idEntity *inflictor, idEntity *attacker, int damage, const id
 		idPlayer* player = static_cast<idPlayer*>(attacker);
 		player->AddExperience(25);
 	}
+	if (attacker && attacker->IsType(idPlayer::GetClassType())) {
+		idPlayer* player = static_cast<idPlayer*>(attacker);
+		player->AddMana(10);
+	}
 
 	// turn off my flashlight, if I had one
 	ProcessEvent( &AI_Flashlight, false );

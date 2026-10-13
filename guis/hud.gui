@@ -35,6 +35,7 @@ windowDef Desktop
 		namedEvent "hideBrackets";
 		namedEvent "weaponChange";
 		namedEvent "radioChatterDown";
+		namedEvent "ManaFull";
 	}
 
 	onNamedEvent ShowHelpScreen {
@@ -49,8 +50,165 @@ windowDef Desktop
 	onNamedEvent ShowLevelUp {
 		set "LevelUpScreen::visible" "1";
 		resetTime "LevelUpScreen" "0";
-
+		
 	}
+	onNamedEvent ManaFull {
+			set "ManaTrackerFull::visible" "1";
+			set "ManaTracker90::visible" "0";
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";
+		
+	}
+	onNamedEvent Mana90 {
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "1";
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana80 {
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0";
+			set "ManaTracker80::visible" "1";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana70 {
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0";
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "1";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana60{
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0;
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "1";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana50{
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0;
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "1";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana40{
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0;
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "1";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana30{
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0;
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "1";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana20{
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0;
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "1";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana10{
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0;
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "1";
+			set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+	onNamedEvent Mana0{
+			set "ManaTrackerFull::visible" "0";
+			set "ManaTracker90::visible" "0;
+			set "ManaTracker80::visible" "0";
+			set "ManaTracker70::visible" "0";
+			set "ManaTracker60::visible" "0";
+			set "ManaTracker50::visible" "0";
+			set "ManaTracker40::visible" "0";
+			set "ManaTracker30::visible" "0";
+			set "ManaTracker20::visible" "0";
+			set "ManaTracker10::visible" "0";
+			set "ManaTrackerEmpty::visible" "1";	
+		
+	}
+
+
+
 
 	onNamedEvent hideHud {
 		set "desktop::hidden" "1" ;
@@ -669,7 +827,7 @@ windowDef Desktop
 	}
 	windowDef p_health
 	{
-		rect	0,0,640,480
+		rect	194,-25,640,480
 		visible	("gui::mp" == 0 )
 		windowDef health_backbar
 		{
@@ -2335,13 +2493,13 @@ windowDef Desktop
 	}
 	windowDef fade
 	{
-		rect	0,4,640,480
+		rect	5,3,640,480
 		backcolor	0,0,0,0
 		visible	1
 	}
 	windowDef failedtext
 	{
-		rect	0,220,640,20
+		rect	0,219,640,20
 		visible	1
 		forecolor	1,1,1,0
 		text	"#str_200279"
@@ -2460,14 +2618,13 @@ windowDef Desktop
 	{
 		rect	0,1,304,62
 		visible	0
-		noTime 1
+		notime	1
 		backcolor	0,0,0,0.611
 
 		onTime 5000 {
 			set "visible" 0
 		}
 
-		
 		windowDef LevelUpDesign3
 		{
 			rect	-54,53,673,17
@@ -2504,5 +2661,467 @@ windowDef Desktop
 			textscale	0.4
 			font	"fonts/marine"
 		}
+	}
+	windowDef ManaTrackerFull
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar1
+		{
+			rect	365,-14,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar2
+		{
+			rect	325,-10,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar3
+		{
+			rect	283,-14,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar4
+		{
+			rect	241,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar5
+		{
+			rect	200,-7,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar6
+		{
+			rect	161,-10,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar7
+		{
+			rect	123,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar8
+		{
+			rect	83,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar9
+		{
+			rect	44,-6,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar10
+		{
+			rect	5,-10,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker90
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar1
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar2
+		{
+			rect	325,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar3
+		{
+			rect	283,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar4
+		{
+			rect	241,-12,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar11
+		{
+			rect	200,-6,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar12
+		{
+			rect	161,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar13
+		{
+			rect	123,-8,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar14
+		{
+			rect	83,-8,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar15
+		{
+			rect	44,-5,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker80
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar17
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar18
+		{
+			rect	325,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar19
+		{
+			rect	283,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar20
+		{
+			rect	241,-12,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar21
+		{
+			rect	200,-6,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar22
+		{
+			rect	161,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar23
+		{
+			rect	123,-8,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar24
+		{
+			rect	83,-8,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker70
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar27
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar28
+		{
+			rect	325,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar29
+		{
+			rect	283,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar30
+		{
+			rect	241,-12,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar31
+		{
+			rect	200,-6,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar32
+		{
+			rect	161,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar33
+		{
+			rect	123,-8,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker60
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar37
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar38
+		{
+			rect	325,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar39
+		{
+			rect	283,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar40
+		{
+			rect	241,-12,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar41
+		{
+			rect	200,-6,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar42
+		{
+			rect	161,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker50
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar1
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar2
+		{
+			rect	325,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar3
+		{
+			rect	283,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar4
+		{
+			rect	241,-12,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar5
+		{
+			rect	200,-6,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker40
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar1
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar2
+		{
+			rect	325,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar3
+		{
+			rect	283,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar4
+		{
+			rect	241,-12,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker30
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar1
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar2
+		{
+			rect	325,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar3
+		{
+			rect	283,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker20
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar1
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+		windowDef MBar2
+		{
+			rect	325,-9,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTracker10
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.611
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
+		windowDef MBar1
+		{
+			rect	365,-13,34,69
+			visible	1
+			backcolor	0,0,1,1
+		}
+	}
+	windowDef ManaTrackerEmpty
+	{
+		rect	237,454,405,24
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.6
+
+		onTime 5000 {
+			set "visible" 0
+		}
+
 	}
 }
