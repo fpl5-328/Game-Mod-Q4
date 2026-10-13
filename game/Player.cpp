@@ -1431,6 +1431,7 @@ void idPlayer::CastThunder() {
 		return;
 	}
 
+
 	weapon->CastThunderSpell();
 	mana -= ManaCost;
 }
