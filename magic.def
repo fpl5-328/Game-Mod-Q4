@@ -189,7 +189,7 @@ entityDef projectile_thunder
 	"clipmask_largeshot"		"1"
 	"no_contents"				"0"
 
-	"model"						"models/weapons/napalmgun/flame_gun_glob.ase"
+	"model"						"models/weapons/rocketlauncher/rocket.lwo"
 	"def_damage"				"damage_ThunderDirect"
 	
 
