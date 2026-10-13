@@ -215,7 +215,8 @@ public:
 	void				AlertMonsters				( void );
 
 	void				CastFireSpell				( void );//cast fire spell <------------------
-	void				CastBlizzardSpell(void);//cast fire spell <------------------
+	void				CastBlizzardSpell(void);//cast Blizzard spell <------------------
+	void				CastThunderSpell(void);//cast Thunder spell <------------------
 	// Mods
 	int					GetMods						( void ) const;
 

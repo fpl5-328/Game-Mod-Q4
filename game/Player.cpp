@@ -1419,10 +1419,20 @@ void idPlayer::CastBlizzard() {
 
 	weapon->CastBlizzardSpell();
 	mana -= ManaCost;
+}
+/*
+==============
+idPlayer::CastThunder
+==============
+*/
+void idPlayer::CastThunder() {
+	int ManaCost = 10;
+	if (mana <= ManaCost) {
+		return;
+	}
 
-
-
-
+	weapon->CastThunderSpell();
+	mana -= ManaCost;
 }
 /*
 ==============

@@ -57,7 +57,12 @@ void Cmd_CastFire_f(const idCmdArgs& args) {
 void Cmd_CastBlizzard_f(const idCmdArgs& args) {
 	gameLocal.GetLocalPlayer()->CastBlizzard();
 }
-
+// -------------------
+//Code for Testing thunder
+// ------------------
+void Cmd_CastThunder_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->CastThunder();
+}
 /*
 ==================
 Cmd_GetFloatArg
@@ -3272,6 +3277,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("ShowLevelUp", Cmd_ShowLevelUp_f, CMD_FL_GAME, "Uses this command to show the help, and is called when h is pressed, hopefully");
 	cmdSystem->AddCommand("CastFire", Cmd_CastFire_f, CMD_FL_GAME, "Use this to test fire command");
 	cmdSystem->AddCommand("CastBlizzard", Cmd_CastBlizzard_f, CMD_FL_GAME, "Use this to test blizzard command");
+	cmdSystem->AddCommand("CastThunder", Cmd_CastThunder_f, CMD_FL_GAME, "Use this to test Thunder command");
 }
 
 /*

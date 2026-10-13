@@ -348,6 +348,7 @@ public:
 
 	void CastFire();
 	void CastBlizzard();
+	void CastThunder();
 
 	rvWeapon*						weapon;
 	idEntityPtr<rvViewWeapon>		weaponViewModel;

@@ -2645,6 +2645,26 @@ void rvWeapon::CastBlizzardSpell() {
 }
 /*
 ================
+rvWeapon::CastThunderSpell
+================
+*/
+void rvWeapon::CastThunderSpell() {
+	const idDeclEntityDef* projectileDef;
+
+
+	projectileDef = gameLocal.FindEntityDef("projectile_thunder", false);
+	if (!projectileDef) {
+		return;
+	}
+	idDict projectileDict = projectileDef->dict;
+
+	idVec3 muzzleOrigin = playerViewOrigin;
+	idMat3 muzzleAxis = playerViewAxis;
+
+	LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 1, 1, 0, 0.1f * owner->magic);
+}
+/*
+================
 rvWeapon::LaunchProjectiles
 ================
 */
