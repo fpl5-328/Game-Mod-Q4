@@ -1470,6 +1470,7 @@ void idPlayer::CastCure() {
 	if (health > inventory.maxHealth) {
 		health = inventory.maxHealth;
 	}
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowCure"); //Code for Visual
 	StartSound("snd_powerup_regen", SND_CHANNEL_POWERUP, 0, false, NULL);
 	gameLocal.PlayEffect(spawnArgs, "fx_regeneration", GetPhysics()->GetOrigin(), idVec3(0, 0, 1).ToMat3(), false, vec3_origin, true);
 	mana -= ManaCost;
@@ -3168,7 +3169,20 @@ void idPlayer::SavePersistantInfo( void ) {
 	playerInfo.Clear();
 	inventory.GetPersistantData( playerInfo );
 	playerInfo.SetInt( "health", health );
-	playerInfo.SetInt( "current_weapon", currentWeapon );
+	playerInfo.SetInt("current_weapon", currentWeapon);
+
+
+
+	playerInfo.SetInt("maxHealth", inventory.maxHealth);
+	playerInfo.SetFloat("strength", strength);
+	playerInfo.SetFloat("defense", defense);
+	playerInfo.SetFloat("speed", speed);
+	playerInfo.SetFloat("mana", mana);
+	playerInfo.SetFloat("maxMana", maxMana);
+	playerInfo.SetFloat("magic", magic);
+
+	playerInfo.SetInt("level", level);
+	playerInfo.SetInt("experience", experience);
 }
 
 /*
@@ -3187,6 +3201,16 @@ void idPlayer::RestorePersistantInfo( void ) {
 
 	inventory.RestoreInventory( this, spawnArgs );
  	health = spawnArgs.GetInt( "health", "100" );
+	inventory.maxHealth = spawnArgs.GetInt("maxHealth", "100");
+	strength = spawnArgs.GetFloat("strength", "0.5f");
+	defense = spawnArgs.GetFloat("defense", "1.0f");
+	speed = spawnArgs.GetFloat("speed", "1.0f");
+	magic = spawnArgs.GetFloat("magic", "1.0f");
+	maxMana = spawnArgs.GetFloat("maxMana", "100.0f");
+	mana = spawnArgs.GetFloat("mana", "100.0f");
+	level = spawnArgs.GetInt("level", "1");
+	experience = spawnArgs.GetInt("experience", "0");
+
  	if ( !gameLocal.isClient ) {
  		idealWeapon = spawnArgs.GetInt( "current_weapon", "0" );
  	}

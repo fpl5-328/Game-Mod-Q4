@@ -52,163 +52,176 @@ windowDef Desktop
 		resetTime "LevelUpScreen" "0";
 		
 	}
+	onNamedEvent ShowCure {
+		set "cure_indicator::visible" "1";
+		resetTime "cure_indicator" "0";
+	}
+
+
 	onNamedEvent ManaFull {
-			set "ManaTrackerFull::visible" "1";
-			set "ManaTracker90::visible" "0";
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";
+		set "ManaTrackerFull::visible" "1";
+		set "ManaTracker90::visible" "0";
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";
 		
 	}
+
 	onNamedEvent Mana90 {
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "1";
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";	
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "1";
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";	
 		
 	}
+
 	onNamedEvent Mana80 {
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0";
-			set "ManaTracker80::visible" "1";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";	
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0";
+		set "ManaTracker80::visible" "1";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";	
 		
 	}
+
 	onNamedEvent Mana70 {
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0";
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "1";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";	
-		
-	}
-	onNamedEvent Mana60{
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0;
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "1";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";	
-		
-	}
-	onNamedEvent Mana50{
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0;
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "1";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";	
-		
-	}
-	onNamedEvent Mana40{
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0;
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "1";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";	
-		
-	}
-	onNamedEvent Mana30{
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0;
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "1";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";	
-		
-	}
-	onNamedEvent Mana20{
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0;
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "1";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "0";	
-		
-	}
-	onNamedEvent Mana10{
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0;
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "1";
-			set "ManaTrackerEmpty::visible" "0";	
-		
-	}
-	onNamedEvent Mana0{
-			set "ManaTrackerFull::visible" "0";
-			set "ManaTracker90::visible" "0;
-			set "ManaTracker80::visible" "0";
-			set "ManaTracker70::visible" "0";
-			set "ManaTracker60::visible" "0";
-			set "ManaTracker50::visible" "0";
-			set "ManaTracker40::visible" "0";
-			set "ManaTracker30::visible" "0";
-			set "ManaTracker20::visible" "0";
-			set "ManaTracker10::visible" "0";
-			set "ManaTrackerEmpty::visible" "1";	
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0";
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "1";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";	
 		
 	}
 
+	onNamedEvent Mana60 {
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0;
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "1";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";	
+		
+	}
 
+	onNamedEvent Mana50 {
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0;
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "1";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";	
+		
+	}
 
+	onNamedEvent Mana40 {
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0;
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "1";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+
+	onNamedEvent Mana30 {
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0;
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "1";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+
+	onNamedEvent Mana20 {
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0;
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "1";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+
+	onNamedEvent Mana10 {
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0;
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "1";
+		set "ManaTrackerEmpty::visible" "0";	
+		
+	}
+
+	onNamedEvent Mana0 {
+		set "ManaTrackerFull::visible" "0";
+		set "ManaTracker90::visible" "0;
+		set "ManaTracker80::visible" "0";
+		set "ManaTracker70::visible" "0";
+		set "ManaTracker60::visible" "0";
+		set "ManaTracker50::visible" "0";
+		set "ManaTracker40::visible" "0";
+		set "ManaTracker30::visible" "0";
+		set "ManaTracker20::visible" "0";
+		set "ManaTracker10::visible" "0";
+		set "ManaTrackerEmpty::visible" "1";	
+		
+	}
 
 	onNamedEvent hideHud {
 		set "desktop::hidden" "1" ;
@@ -3120,6 +3133,20 @@ windowDef Desktop
 		backcolor	0,0,0,0.6
 
 		onTime 5000 {
+			set "visible" 0
+		}
+
+	}
+	windowDef cure_indicator
+	{
+		rect	0,0,640,480
+		background	"gfx/guis/hud/directional_hit"
+		matcolor	0,1,0,0.694
+		rotate	"gui::hitdir"
+		visible	0
+		notime	1
+
+		onTime 2000 {
 			set "visible" 0
 		}
 
