@@ -2,9 +2,8 @@ windowDef Desktop
 {
 	rect	0,0,640,480
 	visible	1
-	nocursor 1
+	nocursor	1
 	menugui	0
-	
 	definevec4	"ws_on"	1,0.5,0,1
 	definevec4	"ws_off"	0.658,0.639,0.376,0.6
 	definevec4	"ws_glowon"	0.7,0.8,0.5,1
@@ -45,18 +44,26 @@ windowDef Desktop
 			set "helpscreen::visible" "0"; 
 		}
 	}
+	onNamedEvent ShowStats {
+		if ("StatsScreen::visible" == 0){
+			set "StatsScreen::visible" "1";
+		}
+		else{
+			set "StatsScreen::visible" "0"; 
+		}
+	}
 
 	onNamedEvent ShowLevelUp {
 		set "LevelUpScreen::visible" "1";
 		resetTime "LevelUpScreen" "0";
 		
 	}
+
 	onNamedEvent AeroActive {
 		set "AeroIsActive::visible" "1";
 		resetTime "AeroIsActive" "0";
-
+		
 	}
-
 
 	onNamedEvent ShowCure {
 		set "cure_indicator::visible" "1";
@@ -2555,7 +2562,7 @@ windowDef Desktop
 	{
 		rect	-2,-4,673,491
 		visible	0
-		nocursor 0
+		nocursor	0
 		menugui	1
 		windowDef top_bar
 		{
@@ -3191,9 +3198,7 @@ windowDef Desktop
 			font	"fonts/marine"
 		}
 	}
-
-
-		windowDef StatsScreen
+	windowDef StatsScreen
 	{
 		rect	-2,-4,673,491
 		visible	0
@@ -3224,7 +3229,7 @@ windowDef Desktop
 			rect	-5,23,646,71
 			visible	1
 			forecolor	1,1,0,1
-			text	"Help Screen"
+			text	"Player Stats"
 			textscale	0.5
 			textalign	1
 			textstyle	2
@@ -3252,12 +3257,12 @@ windowDef Desktop
 		}
 		windowDef Helpful_TextBox
 		{
-			rect	2,79,323,326
+			rect	1,79,649,326
 			visible	1
 			backcolor	0,0,0,1
 			windowDef grad
 			{
-				rect	-20,-117,663,503
+				rect	-17,-110,663,503
 				visible	1
 				background	"gfx/guis/mainmenu/bg_darkgrad"
 				matcolor	0,0,0.501,1
@@ -3265,14 +3270,84 @@ windowDef Desktop
 		}
 		windowDef Helpful_text
 		{
-			rect	23,89,257,203
+			rect	62,94,375,41
 			visible	1
-			forecolor	0.749,0.749,0.749,1
-			text	"This is where information on how to play my Quake 4 mod would be."
+			forecolor	0.745,0.745,0.745,1
+			text	"Attack:"
 			textscale	0.5
 			textstyle	2
 			font	"fonts/profont"
 		}
-	}
+		windowDef Helpful_text1
+		{
+			rect	61,139,375,41
+			visible	1
+			forecolor	0.741,0.741,0.741,1
+			text	"Defense:"
+			textscale	0.5
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text2
+		{
+			rect	60,184,375,41
+			visible	1
+			forecolor	0.737,0.737,0.737,1
+			text	"Speed"
+			textscale	0.5
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text3
+		{
+			rect	61,231,375,41
+			visible	1
+			forecolor	0.729,0.729,0.729,1
+			text	"Magic"
+			textscale	0.5
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text4
+		{
+			rect	59,273,375,41
+			visible	1
+			forecolor	0.725,0.725,0.725,1
+			text	"Max Mana"
+			textscale	0.5
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text5
+		{
+			rect	58,319,375,41
+			visible	1
+			forecolor	0.721,0.721,0.721,1
+			text	"Max Health"
+			textscale	0.5
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef health_amount1
+		{
+			rect	192,103,49,23
+			visible	1
+			forecolor	0.862,0.917,0.760,1
+			text	"gui::player_strength"
+			textscale	0.5
+			font	"fonts/chain"
+			shear	0,-.22
+			textalign	2
+			notime	1
 
+			onTime 0 {
+				transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
+				transition "rect" "$d_health_amount::rect" "$health_amount::rect" "250" ;
+				transition "textscale" "0.6" "0.5" "250" ;
+				
+				transition "icon_health::matcolor" "$desktop::white" "$desktop::healthicon" "250" ;
+			}
+
+		}
+	}
 }

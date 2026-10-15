@@ -82,9 +82,15 @@ void Cmd_UnequipItem_f(const idCmdArgs& args) {
 //Code for helpscreen
 // ------------------
 void Cmd_HelpScreen_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->UpdateStatsScreen();
 	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowHelpScreen"); //Code for Helpscreen <---------------------------------------------------------------------------|
 }
-
+// -------------------
+//Show stats
+// ------------------
+void Cmd_ShowStats_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowStats"); 
+}
 // -------------------
 //Code for Level Up Notification
 // ------------------
@@ -3342,6 +3348,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("EquipItem", Cmd_EquipItem_f, CMD_FL_GAME, "Equips item to player");
 	cmdSystem->AddCommand("UnequipItem", Cmd_UnequipItem_f, CMD_FL_GAME, "Unequips item from player");
 	cmdSystem->AddCommand("ShowInventory", Cmd_ShowInventory_f, CMD_FL_GAME, "Shows the players inventory and equipped items");
+	cmdSystem->AddCommand("ShowStats", Cmd_ShowStats_f, CMD_FL_GAME, "Shows the players inventory and equipped items");
 }
 
 /*

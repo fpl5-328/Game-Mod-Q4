@@ -343,6 +343,8 @@ public:
 	float maxMana;
 	float mana; 
 
+	void UpdateStatsScreen();
+
 	bool OwnedEquipment[11];
 	int EquippedItems[3];
 

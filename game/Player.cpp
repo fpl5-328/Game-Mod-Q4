@@ -1677,7 +1677,15 @@ void idPlayer::ManaUpdate() {
 		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana0"); //Code for Visuals
 	}
 }
-
+/*
+===============
+idPlayer::UpdateHudStats
+===============
+*/
+void idPlayer::UpdateStatsScreen() {
+		hud->SetStateFloat("player_strength", strength);
+		
+}
 /*
 ==============
 idPlayer::SetShowHud
