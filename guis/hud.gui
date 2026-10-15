@@ -2,10 +2,9 @@ windowDef Desktop
 {
 	rect	0,0,640,480
 	visible	1
-	nocursor	1
+	nocursor 1
 	menugui	0
-	)	)
-	/	2
+	
 	definevec4	"ws_on"	1,0.5,0,1
 	definevec4	"ws_off"	0.658,0.639,0.376,0.6
 	definevec4	"ws_glowon"	0.7,0.8,0.5,1
@@ -52,11 +51,17 @@ windowDef Desktop
 		resetTime "LevelUpScreen" "0";
 		
 	}
+	onNamedEvent AeroActive {
+		set "AeroIsActive::visible" "1";
+		resetTime "AeroIsActive" "0";
+
+	}
+
+
 	onNamedEvent ShowCure {
 		set "cure_indicator::visible" "1";
 		resetTime "cure_indicator" "0";
 	}
-
 
 	onNamedEvent ManaFull {
 		set "ManaTrackerFull::visible" "1";
@@ -120,7 +125,7 @@ windowDef Desktop
 
 	onNamedEvent Mana60 {
 		set "ManaTrackerFull::visible" "0";
-		set "ManaTracker90::visible" "0;
+		set "ManaTracker90::visible" "0";
 		set "ManaTracker80::visible" "0";
 		set "ManaTracker70::visible" "0";
 		set "ManaTracker60::visible" "1";
@@ -135,7 +140,7 @@ windowDef Desktop
 
 	onNamedEvent Mana50 {
 		set "ManaTrackerFull::visible" "0";
-		set "ManaTracker90::visible" "0;
+		set "ManaTracker90::visible" "0";
 		set "ManaTracker80::visible" "0";
 		set "ManaTracker70::visible" "0";
 		set "ManaTracker60::visible" "0";
@@ -150,7 +155,7 @@ windowDef Desktop
 
 	onNamedEvent Mana40 {
 		set "ManaTrackerFull::visible" "0";
-		set "ManaTracker90::visible" "0;
+		set "ManaTracker90::visible" "0";
 		set "ManaTracker80::visible" "0";
 		set "ManaTracker70::visible" "0";
 		set "ManaTracker60::visible" "0";
@@ -165,7 +170,7 @@ windowDef Desktop
 
 	onNamedEvent Mana30 {
 		set "ManaTrackerFull::visible" "0";
-		set "ManaTracker90::visible" "0;
+		set "ManaTracker90::visible" "0";
 		set "ManaTracker80::visible" "0";
 		set "ManaTracker70::visible" "0";
 		set "ManaTracker60::visible" "0";
@@ -180,7 +185,7 @@ windowDef Desktop
 
 	onNamedEvent Mana20 {
 		set "ManaTrackerFull::visible" "0";
-		set "ManaTracker90::visible" "0;
+		set "ManaTracker90::visible" "0";
 		set "ManaTracker80::visible" "0";
 		set "ManaTracker70::visible" "0";
 		set "ManaTracker60::visible" "0";
@@ -195,7 +200,7 @@ windowDef Desktop
 
 	onNamedEvent Mana10 {
 		set "ManaTrackerFull::visible" "0";
-		set "ManaTracker90::visible" "0;
+		set "ManaTracker90::visible" "0";
 		set "ManaTracker80::visible" "0";
 		set "ManaTracker70::visible" "0";
 		set "ManaTracker60::visible" "0";
@@ -210,7 +215,7 @@ windowDef Desktop
 
 	onNamedEvent Mana0 {
 		set "ManaTrackerFull::visible" "0";
-		set "ManaTracker90::visible" "0;
+		set "ManaTracker90::visible" "0";
 		set "ManaTracker80::visible" "0";
 		set "ManaTracker70::visible" "0";
 		set "ManaTracker60::visible" "0";
@@ -840,7 +845,7 @@ windowDef Desktop
 	}
 	windowDef p_health
 	{
-		rect	194,-25,640,480
+		rect	209,-21,640,480
 		visible	("gui::mp" == 0 )
 		windowDef health_backbar
 		{
@@ -2550,6 +2555,8 @@ windowDef Desktop
 	{
 		rect	-2,-4,673,491
 		visible	0
+		nocursor 0
+		menugui	1
 		windowDef top_bar
 		{
 			rect	0,2,703,71
@@ -3151,4 +3158,121 @@ windowDef Desktop
 		}
 
 	}
+	windowDef AeroIsActive
+	{
+		rect	238,416,146,36
+		visible	0
+		notime	1
+		backcolor	0,0,0,0.607
+
+		onTime 1500 {
+			set "visible" 0
+		}
+
+		windowDef LevelUpDesign4
+		{
+			rect	-11,26,196,9
+			visible	1
+			backcolor	0,0.501,0,1
+		}
+		windowDef LevelUpDesign5
+		{
+			rect	-42,-1,221,9
+			visible	1
+			backcolor	0,0.501,0,1
+		}
+		windowDef txt_StatsIncreased
+		{
+			rect	1,3,174,30
+			visible	1
+			forecolor	1,1,1,1
+			text	"Aero Active"
+			textscale	0.4
+			font	"fonts/marine"
+		}
+	}
+
+
+		windowDef StatsScreen
+	{
+		rect	-2,-4,673,491
+		visible	0
+		windowDef top_bar
+		{
+			rect	0,2,703,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	0,-104,657,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef q4logo
+		{
+			rect	11,17,97,40
+			visible	1
+			forecolor	0.501,0,1,0.623
+			text	"Menu"
+			textscale	0.6
+			font	"fonts/r_strogg"
+		}
+		windowDef top_text
+		{
+			rect	-5,23,646,71
+			visible	1
+			forecolor	1,1,0,1
+			text	"Help Screen"
+			textscale	0.5
+			textalign	1
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef q4text
+		{
+			rect	426,12,209,54
+			visible	1
+			background	"gfx/guis/mainmenu/q4text"
+			matcolor	1,1,1,1
+		}
+		windowDef Bottom_bar
+		{
+			rect	-12,412,676,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-130,663,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_TextBox
+		{
+			rect	2,79,323,326
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-20,-117,663,503
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_text
+		{
+			rect	23,89,257,203
+			visible	1
+			forecolor	0.749,0.749,0.749,1
+			text	"This is where information on how to play my Quake 4 mod would be."
+			textscale	0.5
+			textstyle	2
+			font	"fonts/profont"
+		}
+	}
+
 }

@@ -31,6 +31,54 @@
 #include "NoGameTypeInfo.h"
 #endif
 // -------------------
+//Code for showing inventory
+// ------------------
+void Cmd_ShowInventory_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->ShowInventory();
+}
+// -------------------
+//Code for giving item
+// ------------------
+void Cmd_GiveItem_f(const idCmdArgs& args) {
+	const char* name = args.Argv(1);
+
+	int item = gameLocal.GetLocalPlayer()->EquipmentNameToID(name);
+
+	if (item == 0) {
+		gameLocal.Printf("Item not found");
+		return;
+	}
+	gameLocal.GetLocalPlayer()->GiveItem(item);
+}
+// -------------------
+//Code for equipping item
+// ------------------
+void Cmd_EquipItem_f(const idCmdArgs& args) {
+	const char* name = args.Argv(1);
+
+	int item = gameLocal.GetLocalPlayer()->EquipmentNameToID(name);
+
+	if (item == 0) {
+		gameLocal.Printf("Item not found");
+		return;
+	}
+	gameLocal.GetLocalPlayer()->EquipItem(item);
+}
+// -------------------
+//Code for unequipping item
+// ------------------
+void Cmd_UnequipItem_f(const idCmdArgs& args) {
+	const char* name = args.Argv(1);
+
+	int item = gameLocal.GetLocalPlayer()->EquipmentNameToID(name);
+
+	if (item == 0) {
+		gameLocal.Printf("Item not found");
+		return;
+	}
+	gameLocal.GetLocalPlayer()->UnequipItem(item);
+}
+// -------------------
 //Code for helpscreen
 // ------------------
 void Cmd_HelpScreen_f(const idCmdArgs& args) {
@@ -3290,6 +3338,10 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("CastThunder", Cmd_CastThunder_f, CMD_FL_GAME, "Use this to test Thunder command");
 	cmdSystem->AddCommand("CastCure", Cmd_CastCure_f, CMD_FL_GAME, "Use this to test cure command");
 	cmdSystem->AddCommand("CastAero", Cmd_CastAero_f, CMD_FL_GAME, "Use this to test aero command");
+	cmdSystem->AddCommand("GiveItem", Cmd_GiveItem_f, CMD_FL_GAME, "Gives the player an item");
+	cmdSystem->AddCommand("EquipItem", Cmd_EquipItem_f, CMD_FL_GAME, "Equips item to player");
+	cmdSystem->AddCommand("UnequipItem", Cmd_UnequipItem_f, CMD_FL_GAME, "Unequips item from player");
+	cmdSystem->AddCommand("ShowInventory", Cmd_ShowInventory_f, CMD_FL_GAME, "Shows the players inventory and equipped items");
 }
 
 /*

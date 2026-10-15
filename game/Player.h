@@ -343,6 +343,19 @@ public:
 	float maxMana;
 	float mana; 
 
+	bool OwnedEquipment[11];
+	int EquippedItems[3];
+
+	void GiveItem(int item);
+	void EquipItem(int item);
+	void UnequipItem(int item);
+	void ShowInventory();
+	void GiveAbility(int item);
+	void RemoveAbility(int item);
+
+	int EquipmentNameToID(const char* name);
+	const char* EquipmentIDToName(int num);
+
 	void LevelUp();
 	void AddExperience(int amount);
 
@@ -362,6 +375,7 @@ public:
 
  	idUserInterface *		hud;				// Common hud
 	idUserInterface *		mphud;				// hud overlay containing MP elements
+
 	
 	idUserInterface *		objectiveSystem;
 	idUserInterface *		cinematicHud;

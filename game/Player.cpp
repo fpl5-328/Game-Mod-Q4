@@ -1090,6 +1090,12 @@ idPlayer::idPlayer() {
 	magic = 1.0f;
 	maxMana = 100.0f;
 	mana = maxMana;
+	for (int i = 0; i < 11; i++) {
+		OwnedEquipment[i] = false;
+	}
+	for (int i = 0; i < 3; i++) {
+		EquippedItems[i] = 0;
+	}
 
 	alreadyDidTeamAnnouncerSound = false;
 
@@ -1118,6 +1124,7 @@ idPlayer::idPlayer() {
 
 	hud						= NULL;
 	mphud					= NULL;
+
 	objectiveSystem			= NULL;
 	objectiveSystemOpen		= false;
 	showNewObjectives		= false;
@@ -1357,6 +1364,141 @@ idPlayer::idPlayer() {
 }
 /*
 ==============
+idPlayer::GiveAbility
+==============
+*/
+void idPlayer::GiveAbility(int item) {
+	if (item == 1) {
+		speed += 20;
+	}
+}
+
+/*
+==============
+idPlayer::RemoveAbility
+==============
+*/
+void idPlayer::RemoveAbility(int item) {
+	if (item == 1) {
+		speed -= 20;
+	}
+}
+
+/*
+==============
+idPlayer::ShowInventory
+==============
+*/
+void idPlayer::ShowInventory() {
+	gameLocal.Printf("Owned Equipment: ");
+	for (int i = 0; i < 11; i++) {
+		if (OwnedEquipment[i]) {
+			gameLocal.Printf("%s\n", EquipmentIDToName(i));
+		}
+	}
+	
+	gameLocal.Printf("Slots: %s, %s, %s\n", EquipmentIDToName(EquippedItems[0]), EquipmentIDToName(EquippedItems[1]), EquipmentIDToName(EquippedItems[2]));
+}
+/*
+==============
+idPlayer::EquipmentNametoID
+==============
+*/
+int idPlayer::EquipmentNameToID(const char* name) {
+	if (idStr::Icmp(name, "RingOfBlindingSpeed") == 0) {
+		return 1;
+	}
+	if (idStr::Icmp(name, "RingOfStrength") == 0) {
+		return 2;
+	}
+	return 0;
+
+}
+/*
+==============
+idPlayer::EquipmentIDtoName
+==============
+*/
+const char* idPlayer::EquipmentIDToName(int item) {
+	if (item == 1) {
+		return ("RingOfBlindingSpeed");
+	}
+	if (item == 2) {
+		return("RingOfStrength");
+	}
+
+	return("Empty");
+
+	
+
+}
+/*
+==============
+idPlayer::GiveItem
+==============
+*/
+void idPlayer::GiveItem(int item) {
+	OwnedEquipment[item] = true;
+
+	gameLocal.Printf("You got the item: %d", item );
+
+}
+/*
+==============
+idPlayer::EquipItem
+==============
+*/
+void idPlayer::EquipItem(int item) {
+	
+	if (!OwnedEquipment[item]){
+		gameLocal.Printf("You do not own item %d", item);
+		return;
+		}
+
+	for (int i = 0; i < 3; i++) {
+		if (EquippedItems[i] == item) {
+			gameLocal.Printf("This item is already equipped");
+			return;
+		}
+	}
+
+	for (int i = 0; i < 3; i++) {
+		if (EquippedItems[i] == 0) {
+			EquippedItems[i] = item;
+			gameLocal.Printf("Item Equipped!");
+			GiveAbility(item);
+			gameLocal.Printf("Slots: %s, %s, %s\n",EquipmentIDToName(EquippedItems[0]), EquipmentIDToName(EquippedItems[1]), EquipmentIDToName(EquippedItems[2]));
+			return;
+		}
+	}
+	gameLocal.Printf("Your item slots are full");
+
+}
+/*
+==============
+idPlayer::UnequipItem
+==============
+*/
+void idPlayer::UnequipItem(int item) {
+
+
+	for (int i = 0; i < 3; i++) {
+		if (EquippedItems[i] == item) {
+			EquippedItems[i] = 0;
+			gameLocal.Printf("Item Removed!");
+			RemoveAbility(item);
+			gameLocal.Printf("Slots: %s, %s, %s\n", EquipmentIDToName(EquippedItems[0]), EquipmentIDToName(EquippedItems[1]), EquipmentIDToName(EquippedItems[2]));
+			return;
+			
+
+		}
+	}
+	gameLocal.Printf("Item is not Equipped!");
+	
+
+}
+/*
+==============
 idPlayer::LevelUp
 ==============
 */
@@ -1368,7 +1510,7 @@ void idPlayer::LevelUp() {
 	inventory.maxHealth = inventory.maxHealth + gameLocal.random.RandomInt(3) + 1;
 	strength = strength + (gameLocal.random.RandomInt(3) + 1)*0.09;
 	defense = defense + gameLocal.random.RandomInt(3) + 1;
-	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.01f;
+	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.05f;
 	magic = magic + gameLocal.random.RandomInt(3) + 1;
 	maxMana = maxMana + gameLocal.random.RandomInt(30) + 10;
 	mana = maxMana;
@@ -1487,7 +1629,8 @@ void idPlayer::CastAero() {
 		return;
 	}
 	aeroActiveTime = (1500 + (magic * 0.5f));
-
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("AeroActive");
+	
 	
 	mana -= ManaCost;
 	ManaUpdate();
@@ -10224,6 +10367,7 @@ void idPlayer::CalcDamagePoints( idEntity *inflictor, idEntity *attacker, const 
 	if (gameLocal.time < aeroActiveTime) {
 		damage = (int)(damage * 0.5f);
 	}
+	
 
 	// check for completely getting out of the damage
 	if ( !damageDef->GetBool( "noGod" ) ) {
