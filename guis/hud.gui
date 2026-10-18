@@ -44,6 +44,7 @@ windowDef Desktop
 			set "helpscreen::visible" "0"; 
 		}
 	}
+
 	onNamedEvent ShowStats {
 		if ("StatsScreen::visible" == 0){
 			set "StatsScreen::visible" "1";
@@ -632,12 +633,6 @@ windowDef Desktop
 	windowDef speed
 	{
 		rect	550,70,80,20
-		text	"gui::player_speed"
-		font	"fonts/lowpixel"
-		textalign	2
-		textscale	0.25
-		textstyle	1
-		forecolor	1,1,1,0.6
 		visible	1
 	}
 	windowDef ViewComments
@@ -3262,7 +3257,7 @@ windowDef Desktop
 			backcolor	0,0,0,1
 			windowDef grad
 			{
-				rect	-17,-110,663,503
+				rect	-14,-109,663,503
 				visible	1
 				background	"gfx/guis/mainmenu/bg_darkgrad"
 				matcolor	0,0,0.501,1
@@ -3280,7 +3275,7 @@ windowDef Desktop
 		}
 		windowDef Helpful_text1
 		{
-			rect	61,139,375,41
+			rect	63,139,375,41
 			visible	1
 			forecolor	0.741,0.741,0.741,1
 			text	"Defense:"
@@ -3328,12 +3323,117 @@ windowDef Desktop
 			textstyle	2
 			font	"fonts/profont"
 		}
-		windowDef health_amount1
+		windowDef Strength_stat
 		{
-			rect	192,103,49,23
+			rect	189,104,150,23
 			visible	1
-			forecolor	0.862,0.917,0.760,1
+			forecolor	0.858,0.913,0.756,1
 			text	"gui::player_strength"
+			textscale	0.5
+			font	"fonts/chain"
+			shear	0,-.22
+			textalign	2
+			notime	1
+
+			onTime 0 {
+				transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
+				transition "rect" "$d_health_amount::rect" "$health_amount::rect" "250" ;
+				transition "textscale" "0.6" "0.5" "250" ;
+				
+				transition "icon_health::matcolor" "$desktop::white" "$desktop::healthicon" "250" ;
+			}
+
+		}
+		windowDef defense_stat
+		{
+			rect	211,148,136,23
+			visible	1
+			forecolor	0.854,0.909,0.752,1
+			text	"gui::player_defense"
+			textscale	0.5
+			font	"fonts/chain"
+			shear	0,-.22
+			textalign	2
+			notime	1
+
+			onTime 0 {
+				transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
+				transition "rect" "$d_health_amount::rect" "$health_amount::rect" "250" ;
+				transition "textscale" "0.6" "0.5" "250" ;
+				
+				transition "icon_health::matcolor" "$desktop::white" "$desktop::healthicon" "250" ;
+			}
+
+		}
+		windowDef speed_stat
+		{
+			rect	162,195,155,23
+			visible	1
+			forecolor	0.850,0.905,0.749,1
+			text	"gui::player_speed"
+			textscale	0.5
+			font	"fonts/chain"
+			shear	0,-.22
+			textalign	2
+			notime	1
+
+			onTime 0 {
+				transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
+				transition "rect" "$d_health_amount::rect" "$health_amount::rect" "250" ;
+				transition "textscale" "0.6" "0.5" "250" ;
+				
+				transition "icon_health::matcolor" "$desktop::white" "$desktop::healthicon" "250" ;
+			}
+
+		}
+		windowDef magic_stat
+		{
+			rect	157,241,168,23
+			visible	1
+			forecolor	0.843,0.898,0.741,1
+			text	"gui::player_magic"
+			textscale	0.5
+			font	"fonts/chain"
+			shear	0,-.22
+			textalign	2
+			notime	1
+
+			onTime 0 {
+				transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
+				transition "rect" "$d_health_amount::rect" "$health_amount::rect" "250" ;
+				transition "textscale" "0.6" "0.5" "250" ;
+				
+				transition "icon_health::matcolor" "$desktop::white" "$desktop::healthicon" "250" ;
+			}
+
+		}
+		windowDef maxmana_stat
+		{
+			rect	210,288,154,23
+			visible	1
+			forecolor	0.831,0.886,0.729,1
+			text	"gui::player_maxmana"
+			textscale	0.5
+			font	"fonts/chain"
+			shear	0,-.22
+			textalign	2
+			notime	1
+
+			onTime 0 {
+				transition "forecolor" "$desktop::white" "$desktop::typecolor" "250" ;
+				transition "rect" "$d_health_amount::rect" "$health_amount::rect" "250" ;
+				transition "textscale" "0.6" "0.5" "250" ;
+				
+				transition "icon_health::matcolor" "$desktop::white" "$desktop::healthicon" "250" ;
+			}
+
+		}
+		windowDef maxhealth_stat
+		{
+			rect	242,331,167,23
+			visible	1
+			forecolor	0.823,0.878,0.721,1
+			text	"gui::player_maxhealth"
 			textscale	0.5
 			font	"fonts/chain"
 			shear	0,-.22

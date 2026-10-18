@@ -82,13 +82,13 @@ void Cmd_UnequipItem_f(const idCmdArgs& args) {
 //Code for helpscreen
 // ------------------
 void Cmd_HelpScreen_f(const idCmdArgs& args) {
-	gameLocal.GetLocalPlayer()->UpdateStatsScreen();
 	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowHelpScreen"); //Code for Helpscreen <---------------------------------------------------------------------------|
 }
 // -------------------
 //Show stats
 // ------------------
 void Cmd_ShowStats_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->UpdateStatsScreen();
 	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowStats"); 
 }
 // -------------------

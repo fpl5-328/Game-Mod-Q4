@@ -1684,6 +1684,11 @@ idPlayer::UpdateHudStats
 */
 void idPlayer::UpdateStatsScreen() {
 		hud->SetStateFloat("player_strength", strength);
+		hud->SetStateFloat("player_defense", defense);
+		hud->SetStateFloat("player_speed", speed);
+		hud->SetStateFloat("player_maxmana", maxMana);
+		hud->SetStateFloat("player_magic", magic);
+		hud->SetStateFloat("player_maxhealth", inventory.maxHealth);
 		
 }
 /*
