@@ -637,6 +637,26 @@ void idPhysics_Player::AirMove( void ) {
 	float		wishspeed;
 	float		scale;
 
+	
+	//double jump code
+	if (command.upmove >= 10 && !(current.movementFlags & PMF_JUMP_HELD) && !(doubleJump)) {
+		idVec3 addVelocity;
+		current.movementFlags |= PMF_JUMP_HELD | PMF_JUMPED;
+
+		groundPlane = false;		// jumping away
+		walking = false;
+
+
+		addVelocity = 3.5f * maxJumpHeight * -gravityVector;
+		addVelocity *= idMath::Sqrt(addVelocity.Normalize());
+		current.velocity += addVelocity;
+
+		doubleJump = true;
+
+	}
+
+
+
 // RAVEN BEGIN
 // bdube: crouch time
 	// if the player isnt pressing crouch and heading down then accumulate slide time
@@ -691,6 +711,8 @@ void idPhysics_Player::WalkMove( void ) {
 	float		accelerate;
 	idVec3		oldVelocity, vel;
 	float		oldVel, newVel;
+
+	doubleJump = false;
 
 	if ( waterLevel > WATERLEVEL_WAIST && ( viewForward * groundTrace.c.normal ) > 0.0f ) {
 		// begin swimming
@@ -1682,6 +1704,7 @@ idPhysics_Player::idPhysics_Player( void ) {
 	ladderNormal.Zero();
 	waterLevel = WATERLEVEL_NONE;
 	waterType = 0;
+	doubleJump = false;
 }
 
 /*

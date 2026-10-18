@@ -1097,6 +1097,8 @@ idPlayer::idPlayer() {
 		EquippedItems[i] = 0;
 	}
 
+	DashCooldown = 0; 
+
 	alreadyDidTeamAnnouncerSound = false;
 
 	doInitWeapon			= false;
@@ -1691,6 +1693,31 @@ void idPlayer::UpdateStatsScreen() {
 		hud->SetStateFloat("player_maxhealth", inventory.maxHealth);
 		
 }
+/*
+===============
+idPlayer::Dash
+===============
+*/
+void idPlayer::Dash() {
+	if (gameLocal.time < DashCooldown) {
+		return;
+
+	}
+
+	if (!physicsObj.HasGroundContacts()) {
+		return;
+	}
+
+	idVec3 facingDirection = viewAxis[0];
+	idVec3 velocity = physicsObj.GetLinearVelocity();
+	velocity = facingDirection * 1000.0f;
+	physicsObj.SetLinearVelocity(velocity);
+
+
+	DashCooldown = gameLocal.time + 1000;
+}
+
+
 /*
 ==============
 idPlayer::SetShowHud

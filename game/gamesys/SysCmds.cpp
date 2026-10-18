@@ -31,6 +31,12 @@
 #include "NoGameTypeInfo.h"
 #endif
 // -------------------
+//Code for testing dash
+// ------------------
+void Cmd_Dash_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->Dash();
+}
+// -------------------
 //Code for showing inventory
 // ------------------
 void Cmd_ShowInventory_f(const idCmdArgs& args) {
@@ -3349,6 +3355,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("UnequipItem", Cmd_UnequipItem_f, CMD_FL_GAME, "Unequips item from player");
 	cmdSystem->AddCommand("ShowInventory", Cmd_ShowInventory_f, CMD_FL_GAME, "Shows the players inventory and equipped items");
 	cmdSystem->AddCommand("ShowStats", Cmd_ShowStats_f, CMD_FL_GAME, "Shows the players inventory and equipped items");
+	cmdSystem->AddCommand("Dash", Cmd_Dash_f, CMD_FL_GAME, "testing dash");
 }
 
 /*

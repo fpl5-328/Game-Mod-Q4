@@ -342,6 +342,7 @@ public:
 	float magic;
 	float maxMana;
 	float mana; 
+	int DashCooldown;
 
 	void UpdateStatsScreen();
 
@@ -369,6 +370,11 @@ public:
 	void ManaUpdate();
 	void AddMana(int amount);
 	int aeroActiveTime;
+
+
+	void Dash();
+
+
 	rvWeapon*						weapon;
 	idEntityPtr<rvViewWeapon>		weaponViewModel;
 	idEntityPtr<idAnimatedEntity>	weaponWorldModel;
