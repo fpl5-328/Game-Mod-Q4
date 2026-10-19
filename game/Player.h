@@ -343,6 +343,7 @@ public:
 	float maxMana;
 	float mana; 
 	int DashCooldown;
+	//int AirDashCooldown;
 
 	void UpdateStatsScreen();
 
@@ -355,6 +356,9 @@ public:
 	void ShowInventory();
 	void GiveAbility(int item);
 	void RemoveAbility(int item);
+
+	bool groundSlamActive;
+
 
 	int EquipmentNameToID(const char* name);
 	const char* EquipmentIDToName(int num);
@@ -369,10 +373,12 @@ public:
 	void CastAero();
 	void ManaUpdate();
 	void AddMana(int amount);
+	void GroundSlam();
 	int aeroActiveTime;
 
 
 	void Dash();
+	//void AirDash();
 
 
 	rvWeapon*						weapon;

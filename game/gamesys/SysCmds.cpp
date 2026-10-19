@@ -31,11 +31,24 @@
 #include "NoGameTypeInfo.h"
 #endif
 // -------------------
+//Code for ground slam
+// ------------------
+void Cmd_GroundSlam_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->GroundSlam();
+}
+// -------------------
 //Code for testing dash
 // ------------------
 void Cmd_Dash_f(const idCmdArgs& args) {
 	gameLocal.GetLocalPlayer()->Dash();
 }
+/*
+// -------------------
+//Code for testing air dash
+// ------------------
+void Cmd_AirDash_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->AirDash();
+}*/
 // -------------------
 //Code for showing inventory
 // ------------------
@@ -3356,6 +3369,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("ShowInventory", Cmd_ShowInventory_f, CMD_FL_GAME, "Shows the players inventory and equipped items");
 	cmdSystem->AddCommand("ShowStats", Cmd_ShowStats_f, CMD_FL_GAME, "Shows the players inventory and equipped items");
 	cmdSystem->AddCommand("Dash", Cmd_Dash_f, CMD_FL_GAME, "testing dash");
+	cmdSystem->AddCommand("GroundSlam", Cmd_GroundSlam_f, CMD_FL_GAME, "ground slam");
 }
 
 /*

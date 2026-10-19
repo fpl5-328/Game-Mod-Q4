@@ -1098,6 +1098,7 @@ idPlayer::idPlayer() {
 	}
 
 	DashCooldown = 0; 
+	groundSlamActive = false;
 
 	alreadyDidTeamAnnouncerSound = false;
 
@@ -1716,7 +1717,50 @@ void idPlayer::Dash() {
 
 	DashCooldown = gameLocal.time + 1000;
 }
+/*
+===============
+idPlayer::GroundSlam
+===============
+*/
+void idPlayer::GroundSlam() {
 
+	if (physicsObj.HasGroundContacts()) {
+		return;
+	}
+	
+	groundSlamActive = true;
+	idVec3 velocity = physicsObj.GetLinearVelocity();
+
+
+	velocity.z = -1000.0f;
+
+	physicsObj.SetLinearVelocity(velocity);
+}
+
+/*
+===============
+idPlayer::AirDash
+===============
+
+void idPlayer::AirDash() {
+	if (gameLocal.time < AirDashCooldown) {
+		return;
+
+	}
+
+	if (physicsObj.HasGroundContacts()) {
+		return;
+	}
+
+	idVec3 facingDirection = viewAxis[0];
+	idVec3 velocity = physicsObj.GetLinearVelocity();
+	velocity = facingDirection * 1000.0f;
+	physicsObj.SetLinearVelocity(velocity);
+
+
+	AirDashCooldown = gameLocal.time + 1000;
+}
+*/
 
 /*
 ==============
@@ -7874,6 +7918,15 @@ void idPlayer::CrashLand( const idVec3 &oldOrigin, const idVec3 &oldVelocity ) {
 		}
 	}
 
+
+
+	//So groundslam doesn't kill me
+	if (groundSlamActive) {
+		groundSlamActive = false;
+		pfl.noFallingDamage = false;
+		return;
+	}
+
 	//jshepard: no falling damage if falling damage is disabled
 	if( pfl.noFallingDamage )	{
 		return;
@@ -9445,6 +9498,7 @@ void idPlayer::Move( void ) {
 		pfl.onGround	= physicsObj.HasGroundContacts();
 		pfl.onLadder	= physicsObj.OnLadder();
 		pfl.jump		= physicsObj.HasJumped();
+
 
  		// check if we're standing on top of a monster and give a push if we are
  		idEntity *groundEnt = physicsObj.GetGroundEntity();
