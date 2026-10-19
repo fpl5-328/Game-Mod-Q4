@@ -31,6 +31,18 @@
 #include "NoGameTypeInfo.h"
 #endif
 // -------------------
+//high jump
+// ------------------
+void Cmd_HighJump_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->HighJump();
+}
+// -------------------
+//glide
+// ------------------
+void Cmd_Glide_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->Glide();
+}
+// -------------------
 //Code for ground slam
 // ------------------
 void Cmd_GroundSlam_f(const idCmdArgs& args) {
@@ -3370,6 +3382,8 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("ShowStats", Cmd_ShowStats_f, CMD_FL_GAME, "Shows the players inventory and equipped items");
 	cmdSystem->AddCommand("Dash", Cmd_Dash_f, CMD_FL_GAME, "testing dash");
 	cmdSystem->AddCommand("GroundSlam", Cmd_GroundSlam_f, CMD_FL_GAME, "ground slam");
+	cmdSystem->AddCommand("Glide", Cmd_Glide_f, CMD_FL_GAME, "glide");
+	cmdSystem->AddCommand("HighJump", Cmd_HighJump_f, CMD_FL_GAME, "High jump");
 }
 
 /*

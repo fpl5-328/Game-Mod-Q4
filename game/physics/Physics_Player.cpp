@@ -647,7 +647,7 @@ void idPhysics_Player::AirMove( void ) {
 		walking = false;
 
 
-		addVelocity = 3.5f * maxJumpHeight * -gravityVector;
+		addVelocity = 3.0f * maxJumpHeight * -gravityVector;
 		addVelocity *= idMath::Sqrt(addVelocity.Normalize());
 		current.velocity += addVelocity;
 

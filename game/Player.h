@@ -357,8 +357,9 @@ public:
 	void GiveAbility(int item);
 	void RemoveAbility(int item);
 
-	bool groundSlamActive;
 
+	bool groundSlamActive;
+	bool gliding;
 
 	int EquipmentNameToID(const char* name);
 	const char* EquipmentIDToName(int num);
@@ -376,7 +377,8 @@ public:
 	void GroundSlam();
 	int aeroActiveTime;
 
-
+	void HighJump();
+	void Glide();
 	void Dash();
 	//void AirDash();
 

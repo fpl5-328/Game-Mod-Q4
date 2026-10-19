@@ -1736,6 +1736,47 @@ void idPlayer::GroundSlam() {
 
 	physicsObj.SetLinearVelocity(velocity);
 }
+/*
+===============
+idPlayer::Glide
+===============
+*/
+void idPlayer::Glide() {
+	if (physicsObj.HasGroundContacts()) {
+		gliding = false;
+		return;
+	}
+
+	gliding = true;
+	idVec3 velocity = physicsObj.GetLinearVelocity();
+
+	if (velocity.z < -50.0f) {
+		velocity.z = -50.0f;
+	}
+
+
+	physicsObj.SetLinearVelocity(velocity);
+
+}
+/*
+===============
+idPlayer::HighJump
+===============
+*/
+void idPlayer::HighJump() {
+
+	if (!physicsObj.HasGroundContacts()) {
+		return;
+	}
+
+	groundSlamActive = true;
+	idVec3 velocity = physicsObj.GetLinearVelocity();
+
+
+	velocity.z = 800.0f;
+
+	physicsObj.SetLinearVelocity(velocity);
+}
 
 /*
 ===============
