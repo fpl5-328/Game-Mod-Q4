@@ -141,6 +141,12 @@ void Cmd_CastBlizzard_f(const idCmdArgs& args) {
 	gameLocal.GetLocalPlayer()->CastBlizzard();
 }
 // -------------------
+//Gravity spell
+// ------------------
+void Cmd_CastGravity_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->CastGravity();
+}
+// -------------------
 //Code for Testing thunder
 // ------------------
 void Cmd_CastThunder_f(const idCmdArgs& args) {
@@ -3375,6 +3381,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("CastThunder", Cmd_CastThunder_f, CMD_FL_GAME, "Use this to test Thunder command");
 	cmdSystem->AddCommand("CastCure", Cmd_CastCure_f, CMD_FL_GAME, "Use this to test cure command");
 	cmdSystem->AddCommand("CastAero", Cmd_CastAero_f, CMD_FL_GAME, "Use this to test aero command");
+	cmdSystem->AddCommand("CastGravity", Cmd_CastGravity_f, CMD_FL_GAME, "Use this to test gravity command");
 	cmdSystem->AddCommand("GiveItem", Cmd_GiveItem_f, CMD_FL_GAME, "Gives the player an item");
 	cmdSystem->AddCommand("EquipItem", Cmd_EquipItem_f, CMD_FL_GAME, "Equips item to player");
 	cmdSystem->AddCommand("UnequipItem", Cmd_UnequipItem_f, CMD_FL_GAME, "Unequips item from player");

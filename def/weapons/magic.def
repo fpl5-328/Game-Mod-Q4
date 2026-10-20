@@ -254,5 +254,91 @@ entityDef damage_ThunderDirect
 
 	"filter_electricity"		"1"
 }
+//--------------------------------------------------------------------------------------------------------------------
+// Projectile for Gravity
+//--------------------------------------------------------------------------------------------------------------------
 
+entityDef projectile_gravity
+{
+	"spawnclass"				"idProjectile"
+	"size"						"7 7 7"
+	"cone"						"2"
+	"noshadows"					"1"
+	"clipmask_largeshot"		"1"
+	"no_contents"				"0"
+
+	"model"						"models/weapons/napalmgun/flame_gun_glob.ase"
+	"def_damage"				"damage_GravityDirect"
+	"def_splash_damage"			"damage_GravitySplash"	
+	
+
+	"speed"						"500"
+	"angular_velocity"			"-10 5 1"
+	"settle_duration"			"0.08"
+	
+	"linear_friction"			"0"
+	"angular_friction"			"0"
+	"contact_friction"			"10"
+	"gravity"					"-0.5"
+	"fuse"						"2.5"
+								
+	"detonate_on_fuse"			"1"
+	"detonate_on_death"			"0"
+	"detonate_on_world"			"1"
+	"detonate_on_actor"			"1"
+								
+	"impact_gib"				"1"
+	"decal_size"				"75"
+
+	"flyEffectAttenuateSpeed"	"200"
+	
+	"airBurst_desc"				"midair_"
+
+	"snd_ricochet"				"weapon_napalmgun_bounce"
+	
+	"fx_fly"				"effects/weapons/dmg/fly.fx"
+	"fx_detonate"				"effects/weapons/dmg/impact_default.fx"
+	
+	"snd_fly"				"weapon_darkmatter_energy_loop"
+	
+	"fx_impact_actor"			"effects/weapons/railgun/impact_default.fx"
+	"fx_impact"					"effects/weapons/railgun/impact_default.fx"
+	"fx_detonate"					"effects/weapons/railgun/impact_default.fx"
+	
+	"net_syncPhysics"			"1"
+
+	"fx_teleport_enter"			"effects/mp/item_teleport.fx"
+	"fx_teleport"				"effects/mp/item_teleport.fx"
+
+	"no_impact_prediction"		"1"
+}
+
+//--------------------------------------------------------------------------------------------------------------------
+// Damage
+//--------------------------------------------------------------------------------------------------------------------
+
+entityDef damage_GravityDirect 
+{
+	"damage"					"40"
+	"gib"						"1"
+	"knockback"					"60"
+	"deathPush"					"200"
+	"deathPushMin"				"3000 2000"
+	"deathPushMax"				"5000 3000"
+
+	"gravity_launch"            "1"
+}
+entityDef damage_GravitySplash
+{
+	"damage"					"40"
+	"radius"					"140"
+	"attackerDamageScale"		"1.0"
+	"knockback"					"60"
+	"gib"						"0"
+	"deathPush"					"100"
+	"deathPushMin"				"3000 2000"
+	"deathPushMax"				"5000 3000"
+
+	"gravity_launch"            "1"
+}
 

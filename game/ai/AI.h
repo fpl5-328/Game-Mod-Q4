@@ -495,6 +495,10 @@ public:
 	int blizzardFrozenTime;
 	void ApplyBlizzardFreeze(int duration);
 
+
+	//Gravity Spell
+	void ApplyGravityLaunch(float launch);
+
 	// physics
 	idPhysics_Monster		physicsObj;
 	

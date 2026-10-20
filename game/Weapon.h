@@ -217,6 +217,7 @@ public:
 	void				CastFireSpell				( void );//cast fire spell <------------------
 	void				CastBlizzardSpell(void);//cast Blizzard spell <------------------
 	void				CastThunderSpell(void);//cast Thunder spell <------------------
+	void				CastGravitySpell(void);//cast Gravity spell <------------------
 	// Mods
 	int					GetMods						( void ) const;
 

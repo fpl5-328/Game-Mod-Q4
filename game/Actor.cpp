@@ -2405,6 +2405,17 @@ void idActor::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir
 		static_cast<idAI*>(this)->ApplyBlizzardFreeze(freezeDuration);//--------------------freeze time code
 	}
 	//freeze code
+	// --------------------------------------------------------------------------------------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	//gravity code
+	if (damageDef->GetBool("gravity_launch") && (IsType(idAI::GetClassType()))) {
+		float launch = 1500.0f;
+		if (attacker->IsType(idPlayer::GetClassType())) {
+			idPlayer* player = static_cast<idPlayer*>(attacker);
+			launch = launch * player->magic;
+		}
+		static_cast<idAI*>(this)->ApplyGravityLaunch(launch);//--------------------freeze time code
+	}
+	//gravity code
 	int	damage = damageDef->GetInt( "damage" ) * damageScale;
 	damage = GetDamageForLocation( damage, location );
 

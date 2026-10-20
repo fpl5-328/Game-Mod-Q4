@@ -354,7 +354,7 @@ public:
 	void EquipItem(int item);
 	void UnequipItem(int item);
 	void ShowInventory();
-	void GiveAbility(int item);
+	bool GiveAbility(int item);
 	void RemoveAbility(int item);
 
 
@@ -372,6 +372,7 @@ public:
 	void CastThunder();
 	void CastCure();
 	void CastAero();
+	void CastGravity();
 	void ManaUpdate();
 	void AddMana(int amount);
 	void GroundSlam();

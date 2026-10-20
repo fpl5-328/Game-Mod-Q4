@@ -1084,7 +1084,7 @@ idPlayer::idPlayer() {
 	level = 1; //Rpg Stats are here, except for MaxHealth because that is already a part of "idInventory"
 	experience = 0;
 
-	strength = 0.5f;
+	strength = 1.0f;
 	defense = 1.0f;
 	speed = 1.0f;
 	magic = 1.0f;
@@ -1370,10 +1370,22 @@ idPlayer::idPlayer() {
 idPlayer::GiveAbility
 ==============
 */
-void idPlayer::GiveAbility(int item) {
+bool idPlayer::GiveAbility(int item) {
 	if (item == 1) {
 		speed += 20;
+		return true;
 	}
+	if (item == 2) {
+		if (magic < 5) {
+			gameLocal.Printf("You're magic is to low for this item! \n 5 or more points are required");
+			gameLocal.Printf("5 or more points are required");
+			return false;
+		}
+		strength += 5;
+		magic -= 5;
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -1385,7 +1397,12 @@ void idPlayer::RemoveAbility(int item) {
 	if (item == 1) {
 		speed -= 20;
 	}
+	if (item == 2) {
+		strength -= 5;
+		magic += 5;
+	}
 }
+
 
 /*
 ==============
@@ -1453,6 +1470,7 @@ idPlayer::EquipItem
 */
 void idPlayer::EquipItem(int item) {
 	
+	
 	if (!OwnedEquipment[item]){
 		gameLocal.Printf("You do not own item %d", item);
 		return;
@@ -1467,12 +1485,14 @@ void idPlayer::EquipItem(int item) {
 
 	for (int i = 0; i < 3; i++) {
 		if (EquippedItems[i] == 0) {
-			EquippedItems[i] = item;
-			gameLocal.Printf("Item Equipped!");
-			GiveAbility(item);
-			gameLocal.Printf("Slots: %s, %s, %s\n",EquipmentIDToName(EquippedItems[0]), EquipmentIDToName(EquippedItems[1]), EquipmentIDToName(EquippedItems[2]));
-			return;
-		}
+			if (!GiveAbility(item)) {
+				return;
+			}
+				EquippedItems[i] = item;
+				gameLocal.Printf("Item Equipped!");
+				gameLocal.Printf("Slots: %s, %s, %s\n", EquipmentIDToName(EquippedItems[0]), EquipmentIDToName(EquippedItems[1]), EquipmentIDToName(EquippedItems[2]));
+				return;
+			}
 	}
 	gameLocal.Printf("Your item slots are full");
 
@@ -1583,6 +1603,24 @@ void idPlayer::CastBlizzard() {
 
 	
 }
+/*
+==============
+idPlayer::CastGravity
+==============
+*/
+void idPlayer::CastGravity() {
+	int ManaCost = 10;
+	if (mana < ManaCost) {
+		return;
+	}
+
+	weapon->CastGravitySpell();
+	mana -= ManaCost;
+	ManaUpdate();
+
+
+}
+
 /*
 ==============
 idPlayer::CastThunder
@@ -1705,17 +1743,13 @@ void idPlayer::Dash() {
 
 	}
 
-	if (!physicsObj.HasGroundContacts()) {
-		return;
-	}
-
 	idVec3 facingDirection = viewAxis[0];
 	idVec3 velocity = physicsObj.GetLinearVelocity();
-	velocity = facingDirection * 1000.0f;
+	velocity = facingDirection * 1250.0f;
 	physicsObj.SetLinearVelocity(velocity);
 
 
-	DashCooldown = gameLocal.time + 1000;
+	DashCooldown = gameLocal.time + 750;
 }
 /*
 ===============
@@ -3470,7 +3504,7 @@ void idPlayer::RestorePersistantInfo( void ) {
 	inventory.RestoreInventory( this, spawnArgs );
  	health = spawnArgs.GetInt( "health", "100" );
 	inventory.maxHealth = spawnArgs.GetInt("maxHealth", "100");
-	strength = spawnArgs.GetFloat("strength", "0.5f");
+	strength = spawnArgs.GetFloat("strength", "1.0f");
 	defense = spawnArgs.GetFloat("defense", "1.0f");
 	speed = spawnArgs.GetFloat("speed", "1.0f");
 	magic = spawnArgs.GetFloat("magic", "1.0f");

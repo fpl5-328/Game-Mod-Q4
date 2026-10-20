@@ -147,7 +147,14 @@ idAI::idAI ( void ) {
 void idAI::ApplyBlizzardFreeze(int duration) {
 	blizzardFrozenTime = gameLocal.time + duration;
 }
+//Gravity function
+void idAI::ApplyGravityLaunch(float launch) {
+	idVec3 velocity = physicsObj.GetLinearVelocity();
 
+	velocity.z = launch;
+
+	physicsObj.SetLinearVelocity(velocity);
+}
 /*
 =====================
 idAI::~idAI
