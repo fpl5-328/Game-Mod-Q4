@@ -1377,12 +1377,22 @@ bool idPlayer::GiveAbility(int item) {
 	}
 	if (item == 2) {
 		if (magic < 5) {
-			gameLocal.Printf("You're magic is to low for this item! \n 5 or more points are required");
-			gameLocal.Printf("5 or more points are required");
+			gameLocal.Printf("\nYou're magic is to low for this item!");
+			gameLocal.Printf("\n5 or more points are required");
 			return false;
 		}
 		strength += 5;
 		magic -= 5;
+		return true;
+	}
+	if (item == 3) {
+		if (speed < 0.5) {
+			gameLocal.Printf("\nYou're speed is to low for this item!");
+			gameLocal.Printf("\n0.5 or more points are required");
+			return false;
+		}
+		defense += 6;
+		speed -= 0.5;
 		return true;
 	}
 	return false;
@@ -1400,6 +1410,10 @@ void idPlayer::RemoveAbility(int item) {
 	if (item == 2) {
 		strength -= 5;
 		magic += 5;
+	}
+	if (item == 3) {
+		defense -= 6;
+		speed += 0.5;
 	}
 }
 
@@ -1431,6 +1445,9 @@ int idPlayer::EquipmentNameToID(const char* name) {
 	if (idStr::Icmp(name, "RingOfStrength") == 0) {
 		return 2;
 	}
+	if (idStr::Icmp(name, "HeavyArmor") == 0) {
+		return 3;
+	}
 	return 0;
 
 }
@@ -1445,6 +1462,9 @@ const char* idPlayer::EquipmentIDToName(int item) {
 	}
 	if (item == 2) {
 		return("RingOfStrength");
+	}
+	if (item == 3) {
+		return("HeavyArmor");
 	}
 
 	return("Empty");
@@ -1532,7 +1552,7 @@ void idPlayer::LevelUp() {
 	level++;
 	inventory.maxHealth = inventory.maxHealth + gameLocal.random.RandomInt(3) + 1;
 	strength = strength + (gameLocal.random.RandomInt(3) + 1)*0.09;
-	defense = defense + gameLocal.random.RandomInt(3) + 1;
+	defense = (defense + gameLocal.random.RandomInt(3) + 1) * 0.5;
 	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.05f;
 	magic = magic + gameLocal.random.RandomInt(3) + 1;
 	maxMana = maxMana + gameLocal.random.RandomInt(30) + 10;
@@ -10527,7 +10547,7 @@ void idPlayer::CalcDamagePoints( idEntity *inflictor, idEntity *attacker, const 
 	damage = ceil(pDmgScale*(float)damage);
 
 	//Check for defense stat*********************************************************************************************Modded Addition
-	damage -= defense;
+	damage -= (0.5 * defense);
 
 	if (damage < 1) {
 		damage = 1;
