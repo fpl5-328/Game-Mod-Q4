@@ -342,6 +342,8 @@ public:
 	float magic;
 	float maxMana;
 	float mana; 
+	int AP;
+	int maxAP;
 	int DashCooldown;
 	//int AirDashCooldown;
 
@@ -359,7 +361,6 @@ public:
 
 
 	bool groundSlamActive;
-	bool gliding;
 
 	int EquipmentNameToID(const char* name);
 	const char* EquipmentIDToName(int num);
@@ -374,7 +375,9 @@ public:
 	void CastAero();
 	void CastGravity();
 	void ManaUpdate();
+	void ApUpdate();
 	void AddMana(int amount);
+	void AddAP(int amount);
 	void GroundSlam();
 	int aeroActiveTime;
 

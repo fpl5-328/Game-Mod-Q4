@@ -31,6 +31,7 @@
 #include "NoGameTypeInfo.h"
 #endif
 // -------------------
+// -------------------
 //high jump
 // ------------------
 void Cmd_HighJump_f(const idCmdArgs& args) {

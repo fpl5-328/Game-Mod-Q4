@@ -1090,6 +1090,8 @@ idPlayer::idPlayer() {
 	magic = 1.0f;
 	maxMana = 100.0f;
 	mana = maxMana;
+	maxAP = 100.0f;
+	AP = maxAP;
 	for (int i = 0; i < 11; i++) {
 		OwnedEquipment[i] = false;
 	}
@@ -1448,6 +1450,9 @@ int idPlayer::EquipmentNameToID(const char* name) {
 	if (idStr::Icmp(name, "HeavyArmor") == 0) {
 		return 3;
 	}
+	if (idStr::Icmp(name, "FireBangle") == 0) {
+		return 4;
+	}
 	return 0;
 
 }
@@ -1557,7 +1562,10 @@ void idPlayer::LevelUp() {
 	magic = magic + gameLocal.random.RandomInt(3) + 1;
 	maxMana = maxMana + gameLocal.random.RandomInt(30) + 10;
 	mana = maxMana;
+	maxAP = maxAP + gameLocal.random.RandomInt(30) + 10;
+	AP = maxAP;
 	ManaUpdate();
+	ApUpdate();
 
 }
 /*
@@ -1589,6 +1597,19 @@ void idPlayer::AddMana(int amount) {
 }
 /*
 ==============
+idPlayer::AddAP
+==============
+*/
+void idPlayer::AddAP(int amount) {
+	AP += amount;
+	if (AP > maxAP) {
+		mana = maxAP;
+	}
+	ApUpdate();
+
+}
+/*
+==============
 idPlayer::CastFire
 ==============
 */
@@ -1597,7 +1618,7 @@ void idPlayer::CastFire() {
 	if (mana < ManaCost) {
 		return;
 		}
-
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("FireCommand"); 
 	weapon->CastFireSpell();
 	mana -= ManaCost;
 	ManaUpdate();
@@ -1616,7 +1637,7 @@ void idPlayer::CastBlizzard() {
 	if (mana < ManaCost) {
 		return;
 	}
-
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("BlizzardCommand");
 	weapon->CastBlizzardSpell();
 	mana -= ManaCost;
 	ManaUpdate();
@@ -1633,7 +1654,7 @@ void idPlayer::CastGravity() {
 	if (mana < ManaCost) {
 		return;
 	}
-
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("GravityCommand");
 	weapon->CastGravitySpell();
 	mana -= ManaCost;
 	ManaUpdate();
@@ -1652,7 +1673,7 @@ void idPlayer::CastThunder() {
 		return;
 	}
 
-
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ThunderCommand");
 	weapon->CastThunderSpell();
 	mana -= ManaCost;
 	ManaUpdate();
@@ -1668,7 +1689,7 @@ void idPlayer::CastCure() {
 		return;
 	}
 
-
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("CureCommand");
 	health += 20 + (magic * 5.0f);
 	if (health > inventory.maxHealth) {
 		health = inventory.maxHealth;
@@ -1689,6 +1710,8 @@ void idPlayer::CastAero() {
 	if (mana < ManaCost) {
 		return;
 	}
+
+	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("AeroCommand");
 	aeroActiveTime = (1500 + (magic * 0.5f));
 	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("AeroActive");
 	
@@ -1739,18 +1762,60 @@ void idPlayer::ManaUpdate() {
 	}
 }
 /*
+==============
+idPlayer::ManaUpdate
+==============
+*/
+void idPlayer::ApUpdate() {
+
+	if (AP >= maxAP) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ApFull"); //Code for Visuals
+	}
+	else if (AP >= 90.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap90"); //Code for Visuals
+	}
+	else if (AP >= 80.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap80"); //Code for Visuals
+	}
+	else if (AP >= 70.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap70"); //Code for Visuals
+	}
+	else if (AP >= 60.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap60"); //Code for Visuals
+	}
+	else if (AP >= 50.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap50"); //Code for Visuals
+	}
+	else if (AP >= 40.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap40"); //Code for Visuals
+	}
+	else if (AP >= 30.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap30"); //Code for Visuals
+	}
+	else if (AP >= 20.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap20"); //Code for Visuals
+	}
+	else if (AP >= 10.0f) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap10"); //Code for Visuals
+	}
+	else {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Ap0"); //Code for Visuals
+	}
+}
+/*
 ===============
 idPlayer::UpdateHudStats
 ===============
 */
 void idPlayer::UpdateStatsScreen() {
+		hud->SetStateInt("player_level", level);
 		hud->SetStateFloat("player_strength", strength);
 		hud->SetStateFloat("player_defense", defense);
 		hud->SetStateFloat("player_speed", speed);
-		hud->SetStateFloat("player_maxmana", maxMana);
+		hud->SetStateInt("player_maxmana", maxMana);
 		hud->SetStateFloat("player_magic", magic);
-		hud->SetStateFloat("player_maxhealth", inventory.maxHealth);
-		
+		hud->SetStateInt("player_maxhealth", inventory.maxHealth);
+		hud->SetStateInt("player_maxap", maxAP);
 }
 /*
 ===============
@@ -1763,6 +1828,12 @@ void idPlayer::Dash() {
 
 	}
 
+	if (AP < 10) {
+		return;
+	}
+
+	AP -= 10;
+	ApUpdate();
 	idVec3 facingDirection = viewAxis[0];
 	idVec3 velocity = physicsObj.GetLinearVelocity();
 	velocity = facingDirection * 1250.0f;
@@ -1782,6 +1853,12 @@ void idPlayer::GroundSlam() {
 		return;
 	}
 	
+	if (AP < 10) {
+		return;
+	}
+
+	AP -= 10;
+	ApUpdate();
 	groundSlamActive = true;
 	idVec3 velocity = physicsObj.GetLinearVelocity();
 
@@ -1797,11 +1874,16 @@ idPlayer::Glide
 */
 void idPlayer::Glide() {
 	if (physicsObj.HasGroundContacts()) {
-		gliding = false;
 		return;
 	}
 
-	gliding = true;
+	if (AP < 1) {
+		return;
+	}
+
+	AP -= 1;
+	ApUpdate();
+
 	idVec3 velocity = physicsObj.GetLinearVelocity();
 
 	if (velocity.z < -50.0f) {
@@ -1823,6 +1905,12 @@ void idPlayer::HighJump() {
 		return;
 	}
 
+	if (AP < 10) {
+		return;
+	}
+
+	AP -= 10;
+	ApUpdate();
 	groundSlamActive = true;
 	idVec3 velocity = physicsObj.GetLinearVelocity();
 
@@ -3502,6 +3590,8 @@ void idPlayer::SavePersistantInfo( void ) {
 	playerInfo.SetFloat("mana", mana);
 	playerInfo.SetFloat("maxMana", maxMana);
 	playerInfo.SetFloat("magic", magic);
+	playerInfo.SetInt("maxAP", maxAP);
+	playerInfo.SetInt("AP", AP);
 
 	playerInfo.SetInt("level", level);
 	playerInfo.SetInt("experience", experience);
@@ -3530,6 +3620,8 @@ void idPlayer::RestorePersistantInfo( void ) {
 	magic = spawnArgs.GetFloat("magic", "1.0f");
 	maxMana = spawnArgs.GetFloat("maxMana", "100.0f");
 	mana = spawnArgs.GetFloat("mana", "100.0f");
+	maxAP = spawnArgs.GetInt("maxAP", "100.0f");
+	AP = spawnArgs.GetInt("AP", "100.0f");
 	level = spawnArgs.GetInt("level", "1");
 	experience = spawnArgs.GetInt("experience", "0");
 
@@ -10545,6 +10637,7 @@ void idPlayer::CalcDamagePoints( idEntity *inflictor, idEntity *attacker, const 
 
 	pDmgScale = damageDef->GetFloat( "playerScale", "1" );
 	damage = ceil(pDmgScale*(float)damage);
+
 
 	//Check for defense stat*********************************************************************************************Modded Addition
 	damage -= (0.5 * defense);
