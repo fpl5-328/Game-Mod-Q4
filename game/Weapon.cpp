@@ -2620,8 +2620,13 @@ void rvWeapon::CastFireSpell() {
 
 	idVec3 muzzleOrigin = playerViewOrigin;
 	idMat3 muzzleAxis = playerViewAxis;
-
-	LaunchProjectiles(projectileDict,muzzleOrigin, muzzleAxis, 1, 1, 0, 0.15f * owner->magic);
+	
+	if (owner->fireringOn == true) {
+		LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 2, 8, 0, 0.15f * owner->magic);
+	}
+	else {
+		LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 1, 1, 0, 0.15f * owner->magic);
+	}
 }
 /*
 ================
@@ -2631,7 +2636,6 @@ rvWeapon::CastBlizzardSpell
 void rvWeapon::CastBlizzardSpell() {
 	const idDeclEntityDef* projectileDef;
 
-
 	projectileDef = gameLocal.FindEntityDef("projectile_blizzaga", false);
 	if (!projectileDef) {
 		return;
@@ -2640,6 +2644,17 @@ void rvWeapon::CastBlizzardSpell() {
 
 	idVec3 muzzleOrigin = playerViewOrigin;
 	idMat3 muzzleAxis = playerViewAxis;
+
+
+	if (owner->blizzardringOn) {
+		const idDeclEntityDef* projectileDef2;
+		projectileDef2 = gameLocal.FindEntityDef("projectile_firaga", false);
+		if (!projectileDef2) {
+			return;
+		}
+		idDict projectileDict2 = projectileDef2->dict;
+		LaunchProjectiles(projectileDict2, muzzleOrigin, muzzleAxis, 1, 1, 0, 0.1f * owner->magic);
+	}
 
 	LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 1, 1, 0, 0.1f * owner->magic);
 }
@@ -2903,7 +2918,7 @@ void rvWeapon::Hitscan( const idDict& dict, const idVec3& muzzleOrigin, const id
 		}
 		dir.Normalize();
 
-		gameLocal.HitScan( dict, muzzleOrigin, dir, fxOrigin, owner, false, 1.0f, NULL, areas );
+		gameLocal.HitScan( dict, muzzleOrigin, dir, fxOrigin, owner, false, power, NULL, areas );
 
 		if ( gameLocal.isServer ) {
 			msg.WriteDir( dir, 24 );

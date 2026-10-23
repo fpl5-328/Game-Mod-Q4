@@ -32,6 +32,14 @@
 #endif
 // -------------------
 // -------------------
+//RefillMana
+// ------------------
+void Cmd_RefillMana_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->mana = gameLocal.GetLocalPlayer()->maxMana;
+	gameLocal.GetLocalPlayer()->ManaUpdate();
+}
+// -------------------
+// -------------------
 //high jump
 // ------------------
 void Cmd_HighJump_f(const idCmdArgs& args) {
@@ -3392,6 +3400,8 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("GroundSlam", Cmd_GroundSlam_f, CMD_FL_GAME, "ground slam");
 	cmdSystem->AddCommand("Glide", Cmd_Glide_f, CMD_FL_GAME, "glide");
 	cmdSystem->AddCommand("HighJump", Cmd_HighJump_f, CMD_FL_GAME, "High jump");
+	cmdSystem->AddCommand("RefillMana", Cmd_RefillMana_f, CMD_FL_GAME, "Refill Mana");
+	
 }
 
 /*

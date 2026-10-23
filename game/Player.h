@@ -342,7 +342,7 @@ public:
 	float magic;
 	float maxMana;
 	float mana; 
-	int AP;
+	float AP;
 	int maxAP;
 	int DashCooldown;
 	//int AirDashCooldown;
@@ -384,7 +384,12 @@ public:
 	void HighJump();
 	void Glide();
 	void Dash();
-	//void AirDash();
+	bool fireringOn;
+	bool blizzardringOn;
+	float saveMaxmana;
+	float saveMagic;
+	float saveDefense;
+	bool GlideRingon;
 
 
 	rvWeapon*						weapon;

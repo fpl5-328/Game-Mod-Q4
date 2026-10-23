@@ -1101,7 +1101,8 @@ idPlayer::idPlayer() {
 
 	DashCooldown = 0; 
 	groundSlamActive = false;
-
+	fireringOn = false;
+	GlideRingon = false;
 	alreadyDidTeamAnnouncerSound = false;
 
 	doInitWeapon			= false;
@@ -1397,6 +1398,34 @@ bool idPlayer::GiveAbility(int item) {
 		speed -= 0.5;
 		return true;
 	}
+
+	if (item == 4) {
+		fireringOn = true;
+		return true;
+	}
+	if (item == 5) {
+		saveMaxmana = maxMana;
+		saveMagic = magic;
+		saveDefense = defense;
+
+		
+		mana = 0;
+		ManaUpdate();
+		maxMana = 0;
+		magic = 0;
+		defense = 0;
+		strength += 50;
+		return true;
+
+	}
+	if (item == 6) {
+		blizzardringOn = true;
+		return true;
+	}
+	if (item == 7) {
+		GlideRingon = true;
+		return true;
+	}
 	return false;
 }
 
@@ -1416,6 +1445,23 @@ void idPlayer::RemoveAbility(int item) {
 	if (item == 3) {
 		defense -= 6;
 		speed += 0.5;
+	}
+	if (item == 4) {
+		fireringOn = false;
+	}
+	if (item == 5) {
+		maxMana = saveMaxmana;
+		magic = saveMagic;
+		defense = saveDefense;
+		ManaUpdate();
+
+		strength -= 50;
+	}
+	if (item == 6) {
+		blizzardringOn = false;
+	}
+	if (item == 7) {
+		GlideRingon = true;
 	}
 }
 
@@ -1450,8 +1496,26 @@ int idPlayer::EquipmentNameToID(const char* name) {
 	if (idStr::Icmp(name, "HeavyArmor") == 0) {
 		return 3;
 	}
-	if (idStr::Icmp(name, "FireBangle") == 0) {
+	if (idStr::Icmp(name, "FireRing") == 0) {
 		return 4;
+	}
+	if (idStr::Icmp(name, "BerzerkerRing") == 0) {
+		return 5;
+	}
+	if (idStr::Icmp(name, "BlizzardFireRing") == 0) {
+		return 6;
+	}
+	if (idStr::Icmp(name, "GlideRing") == 0) {
+		return 7;
+	}
+	if (idStr::Icmp(name, "") == 0) {
+		return 8;
+	}
+	if (idStr::Icmp(name, "") == 0) {
+		return 9;
+	}
+	if (idStr::Icmp(name, "") == 0) {
+		return 10;
 	}
 	return 0;
 
@@ -1471,6 +1535,28 @@ const char* idPlayer::EquipmentIDToName(int item) {
 	if (item == 3) {
 		return("HeavyArmor");
 	}
+	if (item == 4) {
+		return("FireRing");
+	}
+	if (item == 5) {
+		return("BerzerkerRing");
+	}
+	if (item == 6) {
+		return("BlizzardFireRing");
+	}
+	if (item == 7) {
+		return("GlideRing");
+	}
+	if (item == 8) {
+		return("");
+	}
+	if (item == 9) {
+		return("");
+	}
+	if (item == 10) {
+		return("");
+	}
+
 
 	return("Empty");
 
@@ -1560,7 +1646,7 @@ void idPlayer::LevelUp() {
 	defense = (defense + gameLocal.random.RandomInt(3) + 1) * 0.5;
 	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.05f;
 	magic = magic + gameLocal.random.RandomInt(3) + 1;
-	maxMana = maxMana + gameLocal.random.RandomInt(30) + 10;
+	maxMana = maxMana + maxMana * ((gameLocal.random.RandomInt(3) + 1) * 0.10f);
 	mana = maxMana;
 	maxAP = maxAP + gameLocal.random.RandomInt(30) + 10;
 	AP = maxAP;
@@ -1726,8 +1812,10 @@ idPlayer::ManaUpdate
 ==============
 */
 void idPlayer::ManaUpdate() {
-
-	if (mana >= maxMana) {
+	if (maxMana == 0 || mana == 0) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("Mana0"); //Code for Visuals
+	}
+	else if (mana >= maxMana) {
 		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ManaFull"); //Code for Visuals
 	}
 	else if (mana >= 90.0f) {
@@ -1877,11 +1965,19 @@ void idPlayer::Glide() {
 		return;
 	}
 
+
 	if (AP < 1) {
 		return;
 	}
 
-	AP -= 1;
+	if (!GlideRingon) {
+		AP -= 0.5;
+	}
+
+	if (GlideRingon) {
+		AP -= 0.1;
+	}
+
 	ApUpdate();
 
 	idVec3 velocity = physicsObj.GetLinearVelocity();
@@ -3608,6 +3704,7 @@ void idPlayer::RestorePersistantInfo( void ) {
  	if ( gameLocal.isMultiplayer ) {
  		gameLocal.persistentPlayerInfo[entityNumber].Clear();
  	}
+	
  
 	spawnArgs.Copy( gameLocal.persistentPlayerInfo[entityNumber] );
 

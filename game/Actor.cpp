@@ -2416,6 +2416,10 @@ void idActor::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir
 		static_cast<idAI*>(this)->ApplyGravityLaunch(launch);//--------------------freeze time code
 	}
 	//gravity code
+
+	
+
+
 	int	damage = damageDef->GetInt( "damage" ) * damageScale;
 	damage = GetDamageForLocation( damage, location );
 
