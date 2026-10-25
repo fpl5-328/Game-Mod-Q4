@@ -1103,6 +1103,9 @@ idPlayer::idPlayer() {
 	groundSlamActive = false;
 	fireringOn = false;
 	GlideRingon = false;
+	CureRingOn = false;
+	manaringon = false;
+	Apringon = false;
 	alreadyDidTeamAnnouncerSound = false;
 
 	doInitWeapon			= false;
@@ -1375,12 +1378,12 @@ idPlayer::GiveAbility
 */
 bool idPlayer::GiveAbility(int item) {
 	if (item == 1) {
-		speed += 20;
+		speed += 20;//gives the player a large speed increase
 		return true;
 	}
 	if (item == 2) {
 		if (magic < 5) {
-			gameLocal.Printf("\nYou're magic is to low for this item!");
+			gameLocal.Printf("\nYou're magic is to low for this item!");//lowers magic but increases strength
 			gameLocal.Printf("\n5 or more points are required");
 			return false;
 		}
@@ -1390,7 +1393,7 @@ bool idPlayer::GiveAbility(int item) {
 	}
 	if (item == 3) {
 		if (speed < 0.5) {
-			gameLocal.Printf("\nYou're speed is to low for this item!");
+			gameLocal.Printf("\nYou're speed is to low for this item!");//lowers speed but increase armor
 			gameLocal.Printf("\n0.5 or more points are required");
 			return false;
 		}
@@ -1400,11 +1403,11 @@ bool idPlayer::GiveAbility(int item) {
 	}
 
 	if (item == 4) {
-		fireringOn = true;
+		fireringOn = true;//makes the fire command cast to fire projectiles
 		return true;
 	}
 	if (item == 5) {
-		saveMaxmana = maxMana;
+		saveMaxmana = maxMana;//lowers your current magic, defense, and maxman to zero but increases your attack by a lot
 		saveMagic = magic;
 		saveDefense = defense;
 
@@ -1419,13 +1422,26 @@ bool idPlayer::GiveAbility(int item) {
 
 	}
 	if (item == 6) {
-		blizzardringOn = true;
+		blizzardringOn = true;//makes the blizzard command also cast a fire projectile
 		return true;
 	}
 	if (item == 7) {
-		GlideRingon = true;
+		GlideRingon = true;//makes the glide movement use less ap per frame
 		return true;
 	}
+	if (item == 8) {
+		CureRingOn = true;
+		return true;
+	}
+	if (item == 9) {
+		manaringon = true;
+		return true;
+	}
+	if (item == 10) {
+		Apringon = true;
+		return true;
+	}
+	
 	return false;
 }
 
@@ -1461,7 +1477,16 @@ void idPlayer::RemoveAbility(int item) {
 		blizzardringOn = false;
 	}
 	if (item == 7) {
-		GlideRingon = true;
+		GlideRingon = false;
+	}
+	if (item == 8) {
+		CureRingOn = false;
+	}
+	if (item == 9) {
+		manaringon = false;
+	}
+	if (item == 10) {
+		Apringon = false;
 	}
 }
 
@@ -1508,13 +1533,13 @@ int idPlayer::EquipmentNameToID(const char* name) {
 	if (idStr::Icmp(name, "GlideRing") == 0) {
 		return 7;
 	}
-	if (idStr::Icmp(name, "") == 0) {
+	if (idStr::Icmp(name, "CureRing") == 0) {
 		return 8;
 	}
-	if (idStr::Icmp(name, "") == 0) {
+	if (idStr::Icmp(name, "ManaRing") == 0) {
 		return 9;
 	}
-	if (idStr::Icmp(name, "") == 0) {
+	if (idStr::Icmp(name, "APRing") == 0) {
 		return 10;
 	}
 	return 0;
@@ -1548,13 +1573,13 @@ const char* idPlayer::EquipmentIDToName(int item) {
 		return("GlideRing");
 	}
 	if (item == 8) {
-		return("");
+		return("CureRing");
 	}
 	if (item == 9) {
-		return("");
+		return("ManaRing");
 	}
 	if (item == 10) {
-		return("");
+		return("APRing");
 	}
 
 
@@ -1798,8 +1823,7 @@ void idPlayer::CastAero() {
 	}
 
 	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("AeroCommand");
-	aeroActiveTime = (1500 + (magic * 0.5f));
-	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("AeroActive");
+	aeroActiveTime = (4000 + (magic * 0.5f));
 	
 	
 	mana -= ManaCost;
@@ -10042,6 +10066,19 @@ void idPlayer::Think( void ) {
 		return;
 	}
 
+	if (Apringon) {
+		if (AP < maxAP) {
+			AP += 0.1;
+			ApUpdate();
+		}
+	}
+	if (manaringon) {
+		if (mana < maxMana) {
+			mana += 0.1;
+			ManaUpdate();
+		}
+	}
+
 #ifdef _XENON
 	// change the crosshair if it's modified
 	if ( cursor && weapon && g_crosshairColor.IsModified() ) {
@@ -10735,7 +10772,20 @@ void idPlayer::CalcDamagePoints( idEntity *inflictor, idEntity *attacker, const 
 	pDmgScale = damageDef->GetFloat( "playerScale", "1" );
 	damage = ceil(pDmgScale*(float)damage);
 
+	//check for cure ring
+	if (CureRingOn) {
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("CureCommand");
+		
+		this->health += (damage/3);
 
+		if (this->health > inventory.maxHealth) {
+			this->health = inventory.maxHealth;
+		}
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowCure"); //Code for Visual
+		StartSound("snd_powerup_regen", SND_CHANNEL_POWERUP, 0, false, NULL);
+		gameLocal.PlayEffect(spawnArgs, "fx_regeneration", GetPhysics()->GetOrigin(), idVec3(0, 0, 1).ToMat3(), false, vec3_origin, true);
+
+	}
 	//Check for defense stat*********************************************************************************************Modded Addition
 	damage -= (0.5 * defense);
 

@@ -384,12 +384,16 @@ public:
 	void HighJump();
 	void Glide();
 	void Dash();
-	bool fireringOn;
-	bool blizzardringOn;
+	
 	float saveMaxmana;
 	float saveMagic;
 	float saveDefense;
 	bool GlideRingon;
+	bool CureRingOn;
+	bool fireringOn;
+	bool blizzardringOn;
+	bool manaringon;
+	bool Apringon;
 
 
 	rvWeapon*						weapon;
