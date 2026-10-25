@@ -30,6 +30,14 @@
 #else
 #include "NoGameTypeInfo.h"
 #endif
+
+void Cmd_GiveAllEquipment_f(const idCmdArgs& args) {
+	for (int i = 1; i < 11; i++) {
+		gameLocal.GetLocalPlayer()->OwnedEquipment[i] = true;
+	}
+	gameLocal.GetLocalPlayer()->ShowInventory();
+}
+
 // -------------------
 // -------------------
 //RefillMana
@@ -3401,6 +3409,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("Glide", Cmd_Glide_f, CMD_FL_GAME, "glide");
 	cmdSystem->AddCommand("HighJump", Cmd_HighJump_f, CMD_FL_GAME, "High jump");
 	cmdSystem->AddCommand("RefillMana", Cmd_RefillMana_f, CMD_FL_GAME, "Refill Mana");
+	cmdSystem->AddCommand("GiveAllEquipment", Cmd_GiveAllEquipment_f, CMD_FL_GAME, "Gives me all equipment");
 	
 }
 
