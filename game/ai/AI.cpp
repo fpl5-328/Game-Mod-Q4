@@ -1657,6 +1657,14 @@ void idAI::Killed( idEntity *inflictor, idEntity *attacker, int damage, const id
 		idPlayer* player = static_cast<idPlayer*>(attacker);
 		player->AddAP(10 * (gameLocal.random.RandomInt(3) + 1));
 	}
+	if (attacker && attacker->IsType(idPlayer::GetClassType())) {
+		idPlayer* player = static_cast<idPlayer*>(attacker);
+		int newItem = (gameLocal.random.RandomInt(20) + 1);
+		if (!player->OwnedEquipment[newItem] && newItem <= 10) {
+			player->GiveItem(newItem);
+		}
+		
+	}
 
 	// turn off my flashlight, if I had one
 	ProcessEvent( &AI_Flashlight, false );

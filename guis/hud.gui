@@ -36,6 +36,12 @@ windowDef Desktop
 		namedEvent "ManaFull";
 	}
 
+	onNamedEvent FoundNewItem {
+		set "Obtained_box::visible" "1";
+		resetTime "Obtained_box" "0";
+		
+	}
+
 	onNamedEvent FireCommand {
 		set "Fire_command_used::visible" "1";
 		resetTime "Fire_command_used" "0";
@@ -77,7 +83,39 @@ windowDef Desktop
 			set "helpscreen::visible" "1";
 		}
 		else{
-			set "helpscreen::visible" "0"; 
+			if("helpscreenp2::visible" == 0){
+				set "helpscreenp2::visible" "1";
+			} 
+			else{	
+				if("helpscreenp3::visible" == 0){
+					set "helpscreenp3::visible" "1";
+				} 
+				else{
+					if("helpscreenp4::visible" == 0){
+						set "helpscreenp4::visible" "1";
+					}
+					else{
+						if("helpscreenp5::visible" == 0){
+							set "helpscreenp5::visible" "1";
+						}
+						else{
+							if("helpscreenp6::visible" == 0){
+								set "helpscreenp6::visible" "1";
+							}
+							else{
+								set "helpscreen::visible" "0";
+								set "helpscreenp2::visible" "0";
+								set "helpscreenp3::visible" "0";
+								set "helpscreenp4::visible" "0";
+								set "helpscreenp5::visible" "0";
+								set "helpscreenp6::visible" "0";
+								
+								
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -3318,7 +3356,7 @@ windowDef Desktop
 		backcolor	0,0,0,1
 		windowDef grad
 		{
-			rect	-152,-144,321,490
+			rect	-156,-138,321,490
 			visible	1
 			background	"gfx/guis/mainmenu/bg_darkgrad"
 			matcolor	0,0,1,1
@@ -4157,7 +4195,7 @@ windowDef Desktop
 		}
 		windowDef Strength_stat
 		{
-			rect	188,105,122,23
+			rect	188,99,137,30
 			visible	1
 			forecolor	0.858,0.913,0.756,1
 			text	"gui::player_strength"
@@ -4405,12 +4443,12 @@ windowDef Desktop
 		}
 		windowDef Helpful_TextBox
 		{
-			rect	2,79,323,326
+			rect	1,79,639,423
 			visible	1
 			backcolor	0,0,0,1
 			windowDef grad
 			{
-				rect	-20,-117,663,503
+				rect	-3,-80,663,503
 				visible	1
 				background	"gfx/guis/mainmenu/bg_darkgrad"
 				matcolor	0,0,0.501,1
@@ -4418,13 +4456,825 @@ windowDef Desktop
 		}
 		windowDef Helpful_text
 		{
-			rect	23,89,257,203
+			rect	11,81,624,364
 			visible	1
-			forecolor	0.749,0.749,0.749,1
-			text	"This is where information on how to play my Quake 4 mod would be."
+			forecolor	0.721,0.721,0.721,1
+			text	"This mod adds RPG progression elements, magic, equipment, and movements abilities based off of Kindgom Hearts to Quake 4."
 			textscale	0.5
 			textstyle	2
 			font	"fonts/profont"
+		}
+		windowDef Helpful_textX
+		{
+			rect	3,277,624,130
+			visible	1
+			forecolor	0.725,0.725,0.725,1
+			text	"This is page is where you can find information all the new additions that my Quake 4 mod adds."
+			textscale	0.5
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text8
+		{
+			rect	426,447,214,29
+			visible	1
+			forecolor	0.717,0.717,0.717,1
+			text	"Press H to continue"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+	}
+	windowDef helpscreenp2
+	{
+		rect	-2,-4,673,491
+		visible	0
+		nocursor	0
+		menugui	1
+		windowDef top_bar
+		{
+			rect	0,2,703,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	0,-104,657,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef q4logo
+		{
+			rect	11,17,97,40
+			visible	1
+			forecolor	0.501,0,1,0.623
+			text	"Menu"
+			textscale	0.6
+			font	"fonts/r_strogg"
+		}
+		windowDef top_text
+		{
+			rect	-5,23,646,71
+			visible	1
+			forecolor	1,1,0,1
+			text	"Controls"
+			textscale	0.5
+			textalign	1
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef q4text
+		{
+			rect	426,12,209,54
+			visible	1
+			background	"gfx/guis/mainmenu/q4text"
+			matcolor	1,1,1,1
+		}
+		windowDef Bottom_bar
+		{
+			rect	-12,412,676,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-130,663,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_TextBox
+		{
+			rect	1,79,639,423
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-80,663,503
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_text
+		{
+			rect	11,81,624,364
+			visible	1
+			forecolor	0.694,0.694,0.694,1
+			text	"On the bottom left of your screen are all your magic commands and their respective key binds, G to cast fire, E for Blizzard, X for Thunder, C for Cure, Z for Aero, and F for Gravity. Their abilities are explained later."
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX
+		{
+			rect	5,189,637,147
+			visible	1
+			forecolor	0.709,0.709,0.709,1
+			text	"The other notable controls are for the new movement abilities. You can press leftshift to dash, hold tab to glide, press v to high jump, right shift to groundslam, and pressing space mid air allows you to double jump"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text8
+		{
+			rect	426,447,214,29
+			visible	1
+			forecolor	0.717,0.717,0.717,1
+			text	"Press H to continue"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX1
+		{
+			rect	2,302,629,66
+			visible	1
+			forecolor	0.698,0.698,0.698,1
+			text	"You can press back slash to access your player stats"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+	}
+	windowDef helpscreenp3
+	{
+		rect	-1,-3,651,491
+		visible	0
+		nocursor	0
+		menugui	1
+		windowDef top_bar
+		{
+			rect	0,2,703,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	0,-104,657,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef q4logo
+		{
+			rect	11,17,97,40
+			visible	1
+			forecolor	0.501,0,1,0.623
+			text	"Menu"
+			textscale	0.6
+			font	"fonts/r_strogg"
+		}
+		windowDef top_text
+		{
+			rect	-5,23,646,71
+			visible	1
+			forecolor	1,1,0,1
+			text	"Stats"
+			textscale	0.5
+			textalign	1
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef q4text
+		{
+			rect	426,12,209,54
+			visible	1
+			background	"gfx/guis/mainmenu/q4text"
+			matcolor	1,1,1,1
+		}
+		windowDef Bottom_bar
+		{
+			rect	-12,412,676,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-130,663,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_TextBox
+		{
+			rect	1,79,639,423
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-80,663,503
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_text
+		{
+			rect	11,81,624,364
+			visible	1
+			forecolor	0.690,0.690,0.690,1
+			text	"My Quake 4 adds stats that progress as you level up"
+			textscale	0.35
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX
+		{
+			rect	7,136,502,32
+			visible	1
+			forecolor	0.705,0.705,0.705,1
+			text	"The main stats are:"
+			textscale	0.35
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text8
+		{
+			rect	426,447,214,29
+			visible	1
+			forecolor	0.717,0.717,0.717,1
+			text	"Press H to continue"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX1
+		{
+			rect	4,352,629,66
+			visible	1
+			forecolor	0.698,0.698,0.698,1
+			text	"To view the stats menu, press backslash"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX2
+		{
+			rect	10,161,460,24
+			visible	1
+			forecolor	0.658,0.658,0.658,1
+			text	"Attack - Controls the damage of your main weapon"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX3
+		{
+			rect	9,186,491,24
+			visible	1
+			forecolor	0.650,0.650,0.650,1
+			text	"Defense - Lowers the damage taken from enemy attacks"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX4
+		{
+			rect	10,214,491,24
+			visible	1
+			forecolor	0.643,0.643,0.643,1
+			text	"Speed - Increases movement speed"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX5
+		{
+			rect	5,244,645,24
+			visible	1
+			forecolor	0.635,0.635,0.635,1
+			text	"Magic - Increases the damage, duration or effectiveness of your spells"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX6
+		{
+			rect	4,267,645,24
+			visible	1
+			forecolor	0.631,0.631,0.631,1
+			text	"Max Health - Increases your max health"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX7
+		{
+			rect	4,295,645,24
+			visible	1
+			forecolor	0.623,0.623,0.623,1
+			text	"Max Mana - Increases your max mana amount"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX8
+		{
+			rect	3,326,645,24
+			visible	1
+			forecolor	0.615,0.615,0.615,1
+			text	"Max AP - Increases your max Action Points amount"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+	}
+	windowDef helpscreenp4
+	{
+		rect	-2,-4,673,491
+		visible	0
+		nocursor	0
+		menugui	1
+		windowDef top_bar
+		{
+			rect	0,2,703,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	0,-104,657,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef q4logo
+		{
+			rect	11,17,97,40
+			visible	1
+			forecolor	0.501,0,1,0.623
+			text	"Menu"
+			textscale	0.6
+			font	"fonts/r_strogg"
+		}
+		windowDef top_text
+		{
+			rect	-5,23,646,71
+			visible	1
+			forecolor	1,1,0,1
+			text	"Magic"
+			textscale	0.5
+			textalign	1
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef q4text
+		{
+			rect	426,12,209,54
+			visible	1
+			background	"gfx/guis/mainmenu/q4text"
+			matcolor	1,1,1,1
+		}
+		windowDef Bottom_bar
+		{
+			rect	-12,412,676,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-130,663,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_TextBox
+		{
+			rect	1,79,639,423
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-80,663,503
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_text
+		{
+			rect	11,81,624,364
+			visible	1
+			forecolor	0.694,0.694,0.694,1
+			text	"This mod adds 6 new spells to the game and a mana system"
+			textscale	0.35
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX
+		{
+			rect	12,137,640,33
+			visible	1
+			forecolor	0.698,0.698,0.698,1
+			text	"Fire - a high damage, high speed spell with splash damage"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text8
+		{
+			rect	426,447,214,29
+			visible	1
+			forecolor	0.717,0.717,0.717,1
+			text	"Press H to continue"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX1
+		{
+			rect	7,393,629,66
+			visible	1
+			forecolor	0.694,0.694,0.694,1
+			text	"The use of these spells, requires mana which is tracked by the blue bar on the bottom right of your screen"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX9
+		{
+			rect	13,165,640,48
+			visible	1
+			forecolor	0.690,0.690,0.690,1
+			text	"Blizzard - a mid damage, slow speed spell that freezes enemies on contact(Increases time with magic stat)"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textY
+		{
+			rect	9,217,640,23
+			visible	1
+			forecolor	0.682,0.682,0.682,1
+			text	"Thunder - Lobs a group of low damage projectiles"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textY1
+		{
+			rect	10,248,619,50
+			visible	1
+			forecolor	0.670,0.670,0.670,1
+			text	"Aero - Halves the damage the player takes for the duration of this spell(Increases with magic stat)"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textY2
+		{
+			rect	11,295,640,29
+			visible	1
+			forecolor	0.662,0.662,0.662,1
+			text	"Cure - Heals the player (Amount increases by magic stat)"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textY3
+		{
+			rect	6,328,631,50
+			visible	1
+			forecolor	0.650,0.650,0.650,1
+			text	"Gravity - A mid damage, slow speed spell, that launches the enemy into the air on contact"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+	}
+	windowDef helpscreenp5
+	{
+		rect	-2,-4,673,491
+		visible	0
+		nocursor	0
+		menugui	1
+		windowDef top_bar
+		{
+			rect	0,2,703,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	0,-104,657,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef q4logo
+		{
+			rect	11,17,97,40
+			visible	1
+			forecolor	0.501,0,1,0.623
+			text	"Menu"
+			textscale	0.6
+			font	"fonts/r_strogg"
+		}
+		windowDef top_text
+		{
+			rect	-25,29,646,71
+			visible	1
+			forecolor	1,1,0,1
+			text	"Movement Abilites"
+			textscale	0.5
+			textalign	1
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef q4text
+		{
+			rect	431,8,209,54
+			visible	1
+			background	"gfx/guis/mainmenu/q4text"
+			matcolor	1,1,1,1
+		}
+		windowDef Bottom_bar
+		{
+			rect	-12,412,676,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-130,663,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_TextBox
+		{
+			rect	1,79,639,423
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-2,-79,663,503
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_text
+		{
+			rect	4,77,630,66
+			visible	1
+			forecolor	0.713,0.713,0.713,1
+			text	"This mod adds 5 new movement abilities to Quake 4"
+			textscale	0.4
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX
+		{
+			rect	4,356,624,130
+			visible	1
+			forecolor	0.721,0.721,0.721,1
+			text	"Some of these abilities will cost AP or Action Points, your AP meter is tracked by the orange bar on your screen. Your max Ap will increase as you level up"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text8
+		{
+			rect	426,447,214,29
+			visible	1
+			forecolor	0.717,0.717,0.717,1
+			text	"Press H to continue"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text9
+		{
+			rect	4,135,630,29
+			visible	1
+			forecolor	0.701,0.701,0.701,1
+			text	"High Jump - Press V to jump to high in air, drains the AP Meter"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_tex
+		{
+			rect	2,159,630,50
+			visible	1
+			forecolor	0.694,0.694,0.694,1
+			text	"Double Jump - After a jump, press space to double jump, does not drain the AP meter"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_tex1
+		{
+			rect	2,202,630,65
+			visible	1
+			forecolor	0.690,0.690,0.690,1
+			text	"Dash - Press left shift to dash in the direction you are facing, works in the air and on the ground"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_tex2
+		{
+			rect	2,251,630,65
+			visible	1
+			forecolor	0.682,0.682,0.682,1
+			text	"Glide - While in the air, holding tab will allow you to glide, drain the AP while in air"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_tex3
+		{
+			rect	2,300,630,65
+			visible	1
+			forecolor	0.674,0.674,0.674,1
+			text	"Ground Slam - Pressing right shift will send you to the ground, nullifying any fall damage, drains the AP meter"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+	}
+	windowDef helpscreenp6
+	{
+		rect	-2,-4,673,491
+		visible	0
+		nocursor	0
+		menugui	1
+		windowDef top_bar
+		{
+			rect	0,2,703,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	0,-104,657,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef q4logo
+		{
+			rect	11,17,97,40
+			visible	1
+			forecolor	0.501,0,1,0.623
+			text	"Menu"
+			textscale	0.6
+			font	"fonts/r_strogg"
+		}
+		windowDef top_text
+		{
+			rect	-5,23,646,71
+			visible	1
+			forecolor	1,1,0,1
+			text	"Equipment"
+			textscale	0.5
+			textalign	1
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef q4text
+		{
+			rect	426,12,209,54
+			visible	1
+			background	"gfx/guis/mainmenu/q4text"
+			matcolor	1,1,1,1
+		}
+		windowDef Bottom_bar
+		{
+			rect	-12,412,676,71
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-130,663,480
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_TextBox
+		{
+			rect	1,79,639,423
+			visible	1
+			backcolor	0,0,0,1
+			windowDef grad
+			{
+				rect	-3,-80,663,503
+				visible	1
+				background	"gfx/guis/mainmenu/bg_darkgrad"
+				matcolor	0,0,0.501,1
+			}
+		}
+		windowDef Helpful_text
+		{
+			rect	11,81,624,364
+			visible	1
+			forecolor	0.717,0.717,0.717,1
+			text	"This mod adds 10 new equipment that can affect your stats, magic, and movement abilities."
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX
+		{
+			rect	2,191,638,49
+			visible	1
+			forecolor	0.698,0.698,0.698,1
+			text	"To access your inventory, in the console commands type ShowInventory to see all your owned equipment and what you have equipped"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text8
+		{
+			rect	426,447,214,29
+			visible	1
+			forecolor	0.713,0.713,0.713,1
+			text	"Press H to close"
+			textscale	0.3
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_text10
+		{
+			rect	3,133,624,48
+			visible	1
+			forecolor	0.709,0.709,0.709,1
+			text	"While defeating enemies during gameplay, make sure to look for the Obtained New Item notification on the top right of your screen"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX10
+		{
+			rect	3,243,624,48
+			visible	1
+			forecolor	0.694,0.694,0.694,1
+			text	"To equip an item, in the console, type equipItem followed by the item you want to equip"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX11
+		{
+			rect	2,293,637,48
+			visible	1
+			forecolor	0.682,0.682,0.682,1
+			text	"To unequip an item, in the console, type unequipItem followed by the item you want to unequip"
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+		windowDef Helpful_textX12
+		{
+			rect	4,350,637,48
+			visible	1
+			forecolor	0.678,0.678,0.678,1
+			text	"Mixing certain items can result in interesting effects but you can only equip up to 3 items at a time so choose wisely."
+			textscale	0.25
+			textstyle	2
+			font	"fonts/profont"
+		}
+	}
+	windowDef Obtained_box
+	{
+		rect	0,-1,207,48
+		backcolor	0,0,0,0.203
+		visible	0
+
+		onTime 2500 {
+			set "visible" 0
+		}
+
+		windowDef Obtained1
+		{
+			rect	33,21,167,25
+			visible	1
+			forecolor	1,1,1,1
+			text	"New Equipment "
+			textscale	0.4
+			font	"fonts/lowpixel"
+			textstyle	2
+		}
+		windowDef Obtained2
+		{
+			rect	0,0,207,48
+			visible	1
+			backcolor	0,0,0,0.2
+			forecolor	1,1,0.462,1
+			text	"OBTAINED"
+			textscale	0.4
+			font	"fonts/r_strogg"
+		}
+		windowDef Obtained3
+		{
+			rect	-7,23,320,4
+			visible	1
+			backcolor	1,1,0.501,0.2
 		}
 	}
 }

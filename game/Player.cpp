@@ -1106,6 +1106,7 @@ idPlayer::idPlayer() {
 	CureRingOn = false;
 	manaringon = false;
 	Apringon = false;
+	berzerkerring = false;
 	alreadyDidTeamAnnouncerSound = false;
 
 	doInitWeapon			= false;
@@ -1418,6 +1419,7 @@ bool idPlayer::GiveAbility(int item) {
 		magic = 0;
 		defense = 0;
 		strength += 50;
+		berzerkerring = true;
 		return true;
 
 	}
@@ -1470,7 +1472,7 @@ void idPlayer::RemoveAbility(int item) {
 		magic = saveMagic;
 		defense = saveDefense;
 		ManaUpdate();
-
+		berzerkerring = false;
 		strength -= 50;
 	}
 	if (item == 6) {
@@ -1594,9 +1596,14 @@ idPlayer::GiveItem
 ==============
 */
 void idPlayer::GiveItem(int item) {
-	OwnedEquipment[item] = true;
-
-	gameLocal.Printf("You got the item: %d", item );
+	if (!OwnedEquipment[item]) {
+		OwnedEquipment[item] = true;
+		gameLocal.Printf("You got the item: %s", EquipmentIDToName(EquippedItems[0]));
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("FoundNewItem");
+	}
+	else {
+		gameLocal.Printf("You already own the item: %s", EquipmentIDToName(EquippedItems[0]));
+	}
 
 }
 /*
@@ -1725,14 +1732,16 @@ idPlayer::CastFire
 ==============
 */
 void idPlayer::CastFire() {
-	int ManaCost = 10;
-	if (mana < ManaCost) {
-		return;
+	if (!berzerkerring) {
+		int ManaCost = 10;
+		if (mana < ManaCost) {
+			return;
 		}
-	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("FireCommand"); 
-	weapon->CastFireSpell();
-	mana -= ManaCost;
-	ManaUpdate();
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("FireCommand");
+		weapon->CastFireSpell();
+		mana -= ManaCost;
+		ManaUpdate();
+	}
 
 
 
@@ -1744,14 +1753,16 @@ idPlayer::CastBlizzard
 ==============
 */
 void idPlayer::CastBlizzard() {
-	int ManaCost = 10;
-	if (mana < ManaCost) {
-		return;
+	if (!berzerkerring) {
+		int ManaCost = 10;
+		if (mana < ManaCost) {
+			return;
+		}
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("BlizzardCommand");
+		weapon->CastBlizzardSpell();
+		mana -= ManaCost;
+		ManaUpdate();
 	}
-	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("BlizzardCommand");
-	weapon->CastBlizzardSpell();
-	mana -= ManaCost;
-	ManaUpdate();
 
 	
 }
@@ -1761,15 +1772,16 @@ idPlayer::CastGravity
 ==============
 */
 void idPlayer::CastGravity() {
-	int ManaCost = 10;
-	if (mana < ManaCost) {
-		return;
+	if (!berzerkerring) {
+		int ManaCost = 10;
+		if (mana < ManaCost) {
+			return;
+		}
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("GravityCommand");
+		weapon->CastGravitySpell();
+		mana -= ManaCost;
+		ManaUpdate();
 	}
-	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("GravityCommand");
-	weapon->CastGravitySpell();
-	mana -= ManaCost;
-	ManaUpdate();
-
 
 }
 
@@ -1779,15 +1791,17 @@ idPlayer::CastThunder
 ==============
 */
 void idPlayer::CastThunder() {
-	int ManaCost = 10;
-	if (mana < ManaCost) {
-		return;
-	}
+	if (!berzerkerring) {
+		int ManaCost = 10;
+		if (mana < ManaCost) {
+			return;
+		}
 
-	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ThunderCommand");
-	weapon->CastThunderSpell();
-	mana -= ManaCost;
-	ManaUpdate();
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ThunderCommand");
+		weapon->CastThunderSpell();
+		mana -= ManaCost;
+		ManaUpdate();
+	}
 }
 /*
 ==============
@@ -1795,21 +1809,23 @@ idPlayer::CastCure
 ==============
 */
 void idPlayer::CastCure() {
-	int ManaCost = 10;
-	if (mana < ManaCost) {
-		return;
-	}
+	if (!berzerkerring) {
+		int ManaCost = 10;
+		if (mana < ManaCost) {
+			return;
+		}
 
-	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("CureCommand");
-	health += 20 + (magic * 5.0f);
-	if (health > inventory.maxHealth) {
-		health = inventory.maxHealth;
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("CureCommand");
+		health += 20 + (magic * 5.0f);
+		if (health > inventory.maxHealth) {
+			health = inventory.maxHealth;
+		}
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowCure"); //Code for Visual
+		StartSound("snd_powerup_regen", SND_CHANNEL_POWERUP, 0, false, NULL);
+		gameLocal.PlayEffect(spawnArgs, "fx_regeneration", GetPhysics()->GetOrigin(), idVec3(0, 0, 1).ToMat3(), false, vec3_origin, true);
+		mana -= ManaCost;
+		ManaUpdate();
 	}
-	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("ShowCure"); //Code for Visual
-	StartSound("snd_powerup_regen", SND_CHANNEL_POWERUP, 0, false, NULL);
-	gameLocal.PlayEffect(spawnArgs, "fx_regeneration", GetPhysics()->GetOrigin(), idVec3(0, 0, 1).ToMat3(), false, vec3_origin, true);
-	mana -= ManaCost;
-	ManaUpdate();
 }
 /*
 ==============
@@ -1817,17 +1833,19 @@ idPlayer::CastAero
 ==============
 */
 void idPlayer::CastAero() {
-	int ManaCost = 10;
-	if (mana < ManaCost) {
-		return;
-	}
+	if (!berzerkerring) {
+		int ManaCost = 10;
+		if (mana < ManaCost) {
+			return;
+		}
 
-	gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("AeroCommand");
-	aeroActiveTime = (4000 + (magic * 0.5f));
-	
-	
-	mana -= ManaCost;
-	ManaUpdate();
+		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("AeroCommand");
+		aeroActiveTime = (4000 + (magic * 0.5f));
+
+
+		mana -= ManaCost;
+		ManaUpdate();
+	}
 }
 
 /*

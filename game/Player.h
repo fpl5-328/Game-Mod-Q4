@@ -394,6 +394,7 @@ public:
 	bool blizzardringOn;
 	bool manaringon;
 	bool Apringon;
+	bool berzerkerring;
 
 
 	rvWeapon*						weapon;
