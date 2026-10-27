@@ -48,6 +48,14 @@ void Cmd_RefillMana_f(const idCmdArgs& args) {
 }
 // -------------------
 // -------------------
+//RefillAP
+// ------------------
+void Cmd_RefillAP_f(const idCmdArgs& args) {
+	gameLocal.GetLocalPlayer()->AP = gameLocal.GetLocalPlayer()->maxAP;
+	gameLocal.GetLocalPlayer()->ApUpdate();
+}
+// -------------------
+// -------------------
 //high jump
 // ------------------
 void Cmd_HighJump_f(const idCmdArgs& args) {
@@ -3409,6 +3417,7 @@ void idGameLocal::InitConsoleCommands( void ) {
 	cmdSystem->AddCommand("Glide", Cmd_Glide_f, CMD_FL_GAME, "glide");
 	cmdSystem->AddCommand("HighJump", Cmd_HighJump_f, CMD_FL_GAME, "High jump");
 	cmdSystem->AddCommand("RefillMana", Cmd_RefillMana_f, CMD_FL_GAME, "Refill Mana");
+	cmdSystem->AddCommand("RefillAP", Cmd_RefillAP_f, CMD_FL_GAME, "Refills your ap to full");
 	cmdSystem->AddCommand("GiveAllEquipment", Cmd_GiveAllEquipment_f, CMD_FL_GAME, "Gives me all equipment");
 	
 }

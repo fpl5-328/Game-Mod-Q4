@@ -1659,7 +1659,7 @@ void idAI::Killed( idEntity *inflictor, idEntity *attacker, int damage, const id
 	}
 	if (attacker && attacker->IsType(idPlayer::GetClassType())) {
 		idPlayer* player = static_cast<idPlayer*>(attacker);
-		int newItem = (gameLocal.random.RandomInt(20) + 1);
+		int newItem = (gameLocal.random.RandomInt(15) + 1);
 		if (!player->OwnedEquipment[newItem] && newItem <= 10) {
 			player->GiveItem(newItem);
 		}

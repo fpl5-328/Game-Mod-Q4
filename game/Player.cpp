@@ -1101,6 +1101,7 @@ idPlayer::idPlayer() {
 
 	DashCooldown = 0; 
 	groundSlamActive = false;
+	blizzardringOn = false;
 	fireringOn = false;
 	GlideRingon = false;
 	CureRingOn = false;
@@ -1675,7 +1676,7 @@ void idPlayer::LevelUp() {
 	level++;
 	inventory.maxHealth = inventory.maxHealth + gameLocal.random.RandomInt(3) + 1;
 	strength = strength + (gameLocal.random.RandomInt(3) + 1)*0.09;
-	defense = (defense + gameLocal.random.RandomInt(3) + 1) * 0.5;
+	defense = defense + ((gameLocal.random.RandomInt(3) + 1) * 0.5);
 	speed = speed + (gameLocal.random.RandomInt(3) + 1) * 0.05f;
 	magic = magic + gameLocal.random.RandomInt(3) + 1;
 	maxMana = maxMana + maxMana * ((gameLocal.random.RandomInt(3) + 1) * 0.10f);
@@ -1721,7 +1722,7 @@ idPlayer::AddAP
 void idPlayer::AddAP(int amount) {
 	AP += amount;
 	if (AP > maxAP) {
-		mana = maxAP;
+		AP = maxAP;
 	}
 	ApUpdate();
 
@@ -1840,7 +1841,7 @@ void idPlayer::CastAero() {
 		}
 
 		gameLocal.GetLocalPlayer()->hud->HandleNamedEvent("AeroCommand");
-		aeroActiveTime = (4000 + (magic * 0.5f));
+		aeroActiveTime = gameLocal.time + (4000 + (magic * 500));
 
 
 		mana -= ManaCost;

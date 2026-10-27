@@ -2622,7 +2622,7 @@ void rvWeapon::CastFireSpell() {
 	idMat3 muzzleAxis = playerViewAxis;
 	
 	if (owner->fireringOn == true) {
-		LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 2, 8, 0, 0.15f * owner->magic);
+		LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 2, 10, 0, 0.15f * owner->magic);
 	}
 	else {
 		LaunchProjectiles(projectileDict, muzzleOrigin, muzzleAxis, 1, 1, 0, 0.15f * owner->magic);
