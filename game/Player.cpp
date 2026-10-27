@@ -1468,9 +1468,9 @@ void idPlayer::RemoveAbility(int item) {
 		fireringOn = false;
 	}
 	if (item == 5) {
-		maxMana = saveMaxmana;
-		magic = saveMagic;
-		defense = saveDefense;
+		maxMana = maxMana + saveMaxmana;
+		magic = magic + saveMagic;
+		defense = defense + saveDefense;
 		ManaUpdate();
 		berzerkerring = false;
 		strength -= 50;
