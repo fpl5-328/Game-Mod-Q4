@@ -4569,7 +4569,7 @@ windowDef Desktop
 		}
 		windowDef Helpful_textX
 		{
-			rect	5,189,637,147
+			rect	6,223,637,147
 			visible	1
 			forecolor	0.709,0.709,0.709,1
 			text	"The other notable controls are for the new movement abilities. You can press leftshift to dash, hold tab to glide, press v to high jump, right shift to groundslam, and pressing space mid air allows you to double jump"
@@ -4589,7 +4589,7 @@ windowDef Desktop
 		}
 		windowDef Helpful_textX1
 		{
-			rect	2,302,629,66
+			rect	8,346,629,66
 			visible	1
 			forecolor	0.698,0.698,0.698,1
 			text	"You can press back slash to access your player stats"
@@ -4674,8 +4674,8 @@ windowDef Desktop
 		{
 			rect	11,81,624,364
 			visible	1
-			forecolor	0.690,0.690,0.690,1
-			text	"My Quake 4 adds stats that progress as you level up"
+			forecolor	0.686,0.686,0.686,1
+			text	"This Quake 4 mod adds stats that progress as you level up"
 			textscale	0.35
 			textstyle	2
 			font	"fonts/profont"
